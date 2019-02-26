@@ -12,6 +12,7 @@
 	clone_repository
 	run_composer
 	update_symlinks
+	update_permission
 @endstory
 
 @task('clone_repository')
@@ -36,5 +37,11 @@
 
 	echo 'Linking current release'
 	ln -nfs {{ $new_release_dir }} {{ $app_dir }}/current
+@endtask
+
+@task('update_permission')
+	echo "Updating bootstrap/cache permission"
+	chgrp -R www-data {{ $app_dir }}/current/bootstrap/cache
+        chmod -R 775 {{ $app_dir }}/current/bootstrap/cache
 @endtask
 
