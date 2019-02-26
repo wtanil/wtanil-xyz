@@ -36,11 +36,10 @@ deploy_production:
                 - mkdir -p ~/.ssh
                 - '[[ -f /.dockerenv ]] && echo "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
                 - ~/.composer/vendor/bin/envoy run deploy --commit="$CI_COMMIT_SHA"
-
-environment:
-        name: production
-        url: https://192.168.1.1
-when: manual
-only:
-        - master
+        environment:
+                name: production
+                url: https://192.168.1.1
+        when: manual
+        only:
+                - master
 
