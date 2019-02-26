@@ -15,7 +15,7 @@ stages:
 
 unit_test:
         stage: test
-        scripts:
+        script:
                 # Install app dependencies
                 - composer install
                 # Set up .env
