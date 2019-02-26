@@ -1,4 +1,4 @@
-@servers(['localhost' => '127.0.0.1'])
+@servers(['web' => 'gitlabdeployer@128.199.95.150'])
 
 @setup
 	$repository = 'git@gitlab.com:wtanil/main.git';
