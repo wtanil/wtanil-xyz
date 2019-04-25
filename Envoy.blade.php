@@ -13,6 +13,7 @@
 	run_composer
 	update_symlinks
 	update_permission
+	run_migration
 @endstory
 
 @task('clone_repository')
@@ -45,3 +46,7 @@
         chmod -R 775 {{ $app_dir }}/current/bootstrap/cache
 @endtask
 
+@task('run_migration')
+	echo "Running migration"
+	php artisan migrate --force
+@endtask
