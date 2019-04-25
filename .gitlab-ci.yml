@@ -1,8 +1,5 @@
 image: registry.gitlab.com/wtanil/main
 
-services:
-        - mysql:5.7
-
 variables:
         MYSQL_DATABASE: homestead 
         MYSQL_ROOT_PASSWORD: secret
