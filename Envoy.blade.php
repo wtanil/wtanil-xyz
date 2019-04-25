@@ -48,5 +48,5 @@
 
 @task('run_migration')
 	echo "Running migration"
-	{{ $app_dir }}/current/php artisan migrate --force
+	php {{ $app_dir }}/current/artisan migrate --force
 @endtask
