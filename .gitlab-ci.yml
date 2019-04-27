@@ -15,12 +15,8 @@ unit_test:
         script:
                 # Install app dependencies
                 - composer install
-                # Set up .env
-                - cp .env.example .env
                 # Generate an environment key
-                - php artisan key:generate
-                # Run migrations
-                - php artisan migrate
+                - php artisan key:generate --env=testing
                 # Run tests
                 - vendor/bin/phpunit
 
