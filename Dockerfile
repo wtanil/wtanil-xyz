@@ -5,7 +5,7 @@ FROM php:7.2
 RUN apt-get update
 
 # Install PHP and composer dependencies
-RUN apt-get install -qq git curl libmcrypt-dev libjpeg-dev libpng-dev libfreetype6-dev libbz2-dev php7.2-sqlite3 
+RUN apt-get install -qq git curl libmcrypt-dev libjpeg-dev libpng-dev libfreetype6-dev libbz2-dev 
 
 # Clear out the local repository of retrieved package files
 RUN apt-get clean
