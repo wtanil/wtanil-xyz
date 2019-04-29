@@ -7,6 +7,16 @@
         <form action="/link" method="POST" class="col-sm">
             {{ csrf_field() }}
 
+            @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
             <!-- Link -->
             <div class="form-group">
                 <label for="link">Link</label>
@@ -26,7 +36,7 @@
 
     <div class="row">
 
-        @if ($links != null)
+        @if ($links->isNotEmpty())
 
         <div class="col-sm">
             <table class="table table-stripped table-bordered">

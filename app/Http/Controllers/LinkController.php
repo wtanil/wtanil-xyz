@@ -49,11 +49,18 @@ class LinkController extends Controller
      */
     public function store(Request $request)
     {
+    	// Validation
+		$validation = $request->validate([
+			'link' => 'required'
+		]);
+
+		// Creation
         $link = new Link;
         $link->link = $request->link;
         $link->marked = false;
         $link->save();
 
+        // Redirect
         return redirect('/link');
     }
 
