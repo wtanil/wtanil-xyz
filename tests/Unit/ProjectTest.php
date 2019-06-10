@@ -7,47 +7,78 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Repositories\ProjectRepository;
+use App\Project;
+use App\User;
 
 class ProjectTest extends TestCase {
 
 	use RefreshDatabase;
+    protected $projectRepo;
+    protected $user;
+
+    protected function setUp(): void {
+
+        parent::setUp();
+
+        $this->projectRepo = new ProjectRepository();
+        $this->user = factory(User::class)->create();
+
+        // DO I NEED TO RUN THIS FOR EVERY RUN
+        // $this->project = factory(Project::class)->create();
+    }
 
     /**
      *  @test
      *	@group ProjectRepository
-     * 	@return void
      */
-    public function All_NoProject_ReturnEmpty() {
+    public function All_GuestNoProject_ReturnEmpty() {
+        // Arrange
+        // Act
+        // Assert
+        $this->assertCount(0, $this->projectRepo->all());
+    }
 
-    	// Given There is no project
-    	// When 
-    	// Then Empty collection is returned
-    	$projectRepo = New ProjectRepository;
-    	$emptyCollection = $projectRepo->all();
-
-    	$this->assertCount(0, $emptyCollection);
-
+    /**
+     *  @test
+     *  @group ProjectRepository
+     */
+    public function All_GuestOnlyHiddenProject_ReturnEmpty() {
+        // Arrange
+        $project = factory(Project::class, 2)->create(
+            [ 'user_id' => $this->user->id,
+            ]);
+        // Act
+        // Assert
+        $this->assertCount(0, $this->projectRepo->all());
     }
 
 	/**
 	 *  @test
      *	@group ProjectRepository
-     * 	@return void
      */
-    public function All_WithProjects_ReturnAllProjects() {
+    public function All_GuestWithProjects_ReturnAllProjects() {
+        // Arrange
+        $project = factory(Project::class, 2)->state('nothidden')->create(
+            [ 'user_id' => $this->user->id,
+            ]);
+        // Act
+        // Assert
+        $this->assertCount(2, $this->projectRepo->all());
 
-    	// Given There is 5 projects
-    	// When 
-    	// Then Returned collection has 5 items
-    	$projectRepo = New ProjectRepository;
+    }
 
-    	$projects = factory(App\Project::class, 5)->create();
-
-    	$result = $projectRepo->all();
-
-    	$this->assertCount(5, $result);
-
-
+    /**
+     *  @test
+     *  @group ProjectRepository
+     */
+    public function All_AdminWithHiddenProjects_ReturnAllProjects() {
+        // Arrange
+        $project = factory(Project::class, 2)->create(
+            [ 'user_id' => $this->user->id,
+            ]);
+        // Act
+        // Assert
+        $this->assertCount(2, $this->projectRepo->all($this->user->id));
     }
 
 
