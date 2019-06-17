@@ -13,76 +13,105 @@ use App\User;
 class ProjectTest extends TestCase {
 
 	use RefreshDatabase;
-    protected $projectRepo;
+    protected $project;
     protected $user;
 
     protected function setUp(): void {
 
         parent::setUp();
 
-        $this->projectRepo = new ProjectRepository();
+        $this->project = new ProjectRepository();
         $this->user = factory(User::class)->create();
 
-        // DO I NEED TO RUN THIS FOR EVERY RUN
-        // $this->project = factory(Project::class)->create();
+    }
+    
+    /**
+     *  @test
+     *  @group UnitProjectRepository
+     */
+    public function ForPublic_Empty_ReturnEmpty() {
+
+        // Arrange
+        // Act
+        // Assert
+        $this->assertCount(0, $this->project->forPublic());
     }
 
     /**
      *  @test
-     *	@group ProjectRepository
+     *  @group UnitProjectRepository
      */
-    public function All_GuestNoProject_ReturnEmpty() {
+    public function ForPublic_WithOnlyProjects_ReturnProjects() {
         // Arrange
+        factory(Project::class, 2)->state('nothidden')->create(
+            [ 'user_id' => $this->user->id,
+            ]);
         // Act
         // Assert
-        $this->assertCount(0, $this->projectRepo->all());
+        $this->assertCount(2, $this->project->forPublic());
+        
     }
 
     /**
      *  @test
-     *  @group ProjectRepository
+     *  @group UnitProjectRepository
      */
-    public function All_GuestOnlyHiddenProject_ReturnEmpty() {
+    public function ForPublic_WithOnlyHiddenProjects_ReturnEmpty() {
         // Arrange
-        $project = factory(Project::class, 2)->create(
+        factory(Project::class, 2)->create(
             [ 'user_id' => $this->user->id,
             ]);
         // Act
         // Assert
-        $this->assertCount(0, $this->projectRepo->all());
-    }
-
-	/**
-	 *  @test
-     *	@group ProjectRepository
-     */
-    public function All_GuestWithProjects_ReturnAllProjects() {
-        // Arrange
-        $project = factory(Project::class, 2)->state('nothidden')->create(
-            [ 'user_id' => $this->user->id,
-            ]);
-        // Act
-        // Assert
-        $this->assertCount(2, $this->projectRepo->all());
+        $this->assertCount(0, $this->project->forPublic());
 
     }
 
     /**
      *  @test
-     *  @group ProjectRepository
+     *  @group UnitProjectRepository
      */
-    public function All_AdminWithHiddenProjects_ReturnAllProjects() {
+    public function ForPublic_WithProjectsAndHiddenProjects_ReturnOnlyProjects() {
         // Arrange
-        $project = factory(Project::class, 2)->create(
+        factory(Project::class, 2)->create(
+            [ 'user_id' => $this->user->id,
+            ]);
+        factory(Project::class, 2)->state('nothidden')->create(
             [ 'user_id' => $this->user->id,
             ]);
         // Act
         // Assert
-        $this->assertCount(2, $this->projectRepo->all($this->user->id));
+        $this->assertCount(2, $this->project->forPublic());
     }
 
+    /**
+     *  @test
+     *  @group UnitProjectRepository
+     */
+    public function All_Empty_ReturnEmpty() {
 
+        // Arrange
+        // Act
+        // Assert
+        $this->assertCount(0, $this->project->all());
+    }
 
+    /**
+     *  @test
+     *  @group UnitProjectRepository
+     */
+    public function All_WithProjects_ReturnProjects() {
+        // Arrange
+        factory(Project::class, 2)->create(
+            [ 'user_id' => $this->user->id,
+            ]);
+        factory(Project::class, 2)->state('nothidden')->create(
+            [ 'user_id' => $this->user->id,
+            ]);
+        // Act
+        // Assert
+        $this->assertCount(4, $this->project->all());
+    }
 
 
 

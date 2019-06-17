@@ -22,3 +22,5 @@ Route::get('/link', 'LinkController@index');
 Route::post('/link', 'LinkController@store');
 Route::put('/link/{id}/mark', 'LinkController@mark');
 Route::delete('/link/{id}', 'LinkController@destroy');
+
+Route::get('/projects', 'ProjectController@index');
