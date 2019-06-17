@@ -14,6 +14,6 @@ class TagRepository implements TagInterface {
      *  @return
      */
     public function all() {
-        
+        return Tag::orderBy('priority')->orderBy('name')->get();
     }
 }
