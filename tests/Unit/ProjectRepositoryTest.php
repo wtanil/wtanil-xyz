@@ -10,7 +10,7 @@ use App\Repositories\ProjectRepository;
 use App\Project;
 use App\User;
 
-class ProjectTest extends TestCase {
+class ProjectRepositoryTest extends TestCase {
 
 	use RefreshDatabase;
     protected $project;
