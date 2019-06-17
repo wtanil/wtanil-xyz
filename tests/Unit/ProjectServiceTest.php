@@ -27,9 +27,7 @@ class ProjectServiceTest extends TestCase
         parent::setUp();
 
         $this->projectRepoMock = $this->mock(ProjectInterface::class);
-        
         $this->projectService = $this->app->make(ProjectService::class);
-
         $this->user = factory(User::class)->make();
 
 

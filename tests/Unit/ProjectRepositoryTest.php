@@ -20,7 +20,7 @@ class ProjectRepositoryTest extends TestCase {
 
         parent::setUp();
 
-        $this->project = new ProjectRepository();
+        $this->project = $this->app->make(ProjectRepository::class);
         $this->user = factory(User::class)->create();
 
     }
