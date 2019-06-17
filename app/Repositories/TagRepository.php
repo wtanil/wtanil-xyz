@@ -7,5 +7,13 @@ use App\Tag;
 
 class TagRepository implements TagInterface {
 
-    
+    /**
+     *  Get all tags
+     *
+     *  @param
+     *  @return
+     */
+    public function all() {
+        
+    }
 }
