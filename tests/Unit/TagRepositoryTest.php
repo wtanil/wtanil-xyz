@@ -34,7 +34,7 @@ class TagRepositoryTest extends TestCase
         // Arrange
         // Act
         // Assert
-        $this->assertCount(2, $this->tag->all());
+        $this->assertCount(0, $this->tag->all());
     }
 
     /**

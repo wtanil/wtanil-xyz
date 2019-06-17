@@ -14,10 +14,13 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-
             'App\Contracts\ProjectInterface',
             'App\Repositories\ProjectRepository'
+            );
 
+        $this->app->bind(
+            'App\Contracts\TagInterface',
+            'App\Repositories\TagRepository'
             );
     }
 
