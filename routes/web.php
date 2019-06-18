@@ -16,11 +16,27 @@ Route::get('/', function () {
 });
 
 Auth::routes(['register' => false]);
+
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Link Routes
 Route::get('/link', 'LinkController@index');
 Route::post('/link', 'LinkController@store');
 Route::put('/link/{id}/mark', 'LinkController@mark');
 Route::delete('/link/{id}', 'LinkController@destroy');
 
+
+// Project Routes
 Route::get('/projects', 'ProjectController@index');
+
+// Tag Routes
+Route::get('/tags', 'TagController@index');
+
+
+
+
+
+
+
+
+

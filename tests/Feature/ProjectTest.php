@@ -26,7 +26,7 @@ class ProjectTest extends TestCase
 
     /**
      *  @test
-     *  @group FeatureProjectRepository
+     *  @group FeatureProject
      */
     public function guest_can_see_projects()
     {
@@ -46,7 +46,7 @@ class ProjectTest extends TestCase
 
     /**
      *  @test
-     *  @group FeatureProjectRepository
+     *  @group FeatureProject
      */
     public function guest_can_not_see_hidden_projects()
     {
@@ -65,7 +65,7 @@ class ProjectTest extends TestCase
 
     /**
      *  @test
-     *  @group FeatureProjectRepository
+     *  @group FeatureProject
      */
     public function admin_can_see_hidden_project()
     {
