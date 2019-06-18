@@ -26,7 +26,7 @@ class TagService {
      *  @return 
      */
     public function all() {
-        
+        return $this->tag->all();
     }
 
 

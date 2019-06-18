@@ -28,7 +28,7 @@ class TagServiceTest extends TestCase
      *  @test
      *  @group TagService
      */
-    public function All__()
+    public function All__AllIsCalled()
     {
         // Arrange
         $this->tagRepoMock->shouldReceive('all')->once();
