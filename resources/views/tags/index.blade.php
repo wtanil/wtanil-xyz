@@ -16,7 +16,7 @@
                 <div class="col">
                     {{ $tag->priority }}
                 </div>
-                <div class="col">
+                <div class="col" style="background-color: #{{ $tag->color }}; margin: 10px;">
                     {{ $tag->color }}
                 </div>
             </div>
