@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Tag;
+
 class TagsTableSeeder extends Seeder
 {
     /**
@@ -11,15 +13,15 @@ class TagsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Project::class, 5)->create([
+        factory(Tag::class, 5)->create([
             'priority' => 1,
         ]);
 
-        factory(Project::class, 5)->create([
+        factory(Tag::class, 5)->create([
             'priority' => 2
         ]);
 
-        factory(Project::class, 5)->create([
+        factory(Tag::class, 5)->create([
             'priority' => 3
         ]);
 
