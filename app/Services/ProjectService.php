@@ -20,10 +20,10 @@ class ProjectService {
     }
 
     /**
-     *  Contructor
+     *  Return all project if admin, non-hidden projects if guest
      *
      *  @param
-     *  @return void
+     *  @return 
      */
     public function all() {
         if (Auth::check()) {
