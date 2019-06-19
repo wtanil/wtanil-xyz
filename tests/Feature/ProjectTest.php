@@ -35,6 +35,8 @@ class ProjectTest extends TestCase
             [ 'user_id' => $this->user->id,
             ]);
         $projectName = $projects->name;
+        
+        $this->withoutExceptionHandling();
 
         // Act
         $response = $this->call('GET', '/projects');
@@ -55,6 +57,8 @@ class ProjectTest extends TestCase
             [ 'user_id' => $this->user->id,
             ]);
         $projectName = $projects->name;
+
+        $this->withoutExceptionHandling();
         
         // Act
         $response = $this->call('GET', '/projects');
@@ -77,6 +81,8 @@ class ProjectTest extends TestCase
             ]);
         
         $projectName = $projects->name;
+
+        $this->withoutExceptionHandling();
 
         // Act
         $response = $this->call('GET', '/projects');

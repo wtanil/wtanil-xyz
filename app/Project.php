@@ -21,4 +21,30 @@ class Project extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    /**
+     *  Get all of the tags for a project
+     */ 
+    public function tags()
+    {
+        return $this->morphToMany('App\Tag', 'taggable')->orderBy('priority')->orderBy('name');
+    }
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+

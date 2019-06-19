@@ -32,6 +32,7 @@ class ProjectRepositoryTest extends TestCase {
     public function ForPublic_Empty_ReturnEmpty() {
 
         // Arrange
+        $this->withoutExceptionHandling();
         // Act
         // Assert
         $this->assertCount(0, $this->project->forPublic());
@@ -44,8 +45,10 @@ class ProjectRepositoryTest extends TestCase {
     public function ForPublic_WithOnlyProjects_ReturnProjects() {
         // Arrange
         factory(Project::class, 2)->state('nothidden')->create(
-            [ 'user_id' => $this->user->id,
-            ]);
+            [ 'user_id' => $this->user->id]
+        );
+
+        $this->withoutExceptionHandling();
         // Act
         // Assert
         $this->assertCount(2, $this->project->forPublic());
@@ -59,8 +62,9 @@ class ProjectRepositoryTest extends TestCase {
     public function ForPublic_WithOnlyHiddenProjects_ReturnEmpty() {
         // Arrange
         factory(Project::class, 2)->create(
-            [ 'user_id' => $this->user->id,
-            ]);
+            [ 'user_id' => $this->user->id]
+        );
+        $this->withoutExceptionHandling();
         // Act
         // Assert
         $this->assertCount(0, $this->project->forPublic());
@@ -74,11 +78,12 @@ class ProjectRepositoryTest extends TestCase {
     public function ForPublic_WithProjectsAndHiddenProjects_ReturnOnlyProjects() {
         // Arrange
         factory(Project::class, 2)->create(
-            [ 'user_id' => $this->user->id,
-            ]);
+            [ 'user_id' => $this->user->id]
+        );
         factory(Project::class, 2)->state('nothidden')->create(
-            [ 'user_id' => $this->user->id,
-            ]);
+            ['user_id' => $this->user->id]
+        );
+        $this->withoutExceptionHandling();
         // Act
         // Assert
         $this->assertCount(2, $this->project->forPublic());
@@ -91,6 +96,7 @@ class ProjectRepositoryTest extends TestCase {
     public function All_Empty_ReturnEmpty() {
 
         // Arrange
+        $this->withoutExceptionHandling();
         // Act
         // Assert
         $this->assertCount(0, $this->project->all());
@@ -103,16 +109,15 @@ class ProjectRepositoryTest extends TestCase {
     public function All_WithProjects_ReturnProjects() {
         // Arrange
         factory(Project::class, 2)->create(
-            [ 'user_id' => $this->user->id,
-            ]);
+            ['user_id' => $this->user->id]);
         factory(Project::class, 2)->state('nothidden')->create(
-            [ 'user_id' => $this->user->id,
-            ]);
+            ['user_id' => $this->user->id,]
+        );
+        $this->withoutExceptionHandling();
         // Act
         // Assert
         $this->assertCount(4, $this->project->all());
     }
-
 
 
 
