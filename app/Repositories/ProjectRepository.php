@@ -16,7 +16,7 @@ class ProjectRepository implements ProjectInterface {
 	public function all()
     {
 
-    	return Project::orderBy('started_date', 'desc')->with('tags:name, priority, color')->get();
+    	return Project::orderBy('started_date', 'desc')->with('tags:name,priority,color')->get();
 	}
 
     /**
@@ -28,7 +28,7 @@ class ProjectRepository implements ProjectInterface {
     public function forPublic()
     {
 
-        return Project::where('hidden', false)->orderBy('started_date', 'desc')->with('tags:name, priority, color')->get();
+        return Project::where('hidden', false)->orderBy('started_date', 'desc')->with('tags:name,priority,color')->get();
 
     }
 
