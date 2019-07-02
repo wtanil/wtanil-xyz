@@ -37,8 +37,7 @@ class TagFeatureTest extends TestCase
         $tagValues = [
                         'name' => $factoryTag->name,
                         'priority' => $factoryTag->priority,
-                        'color' => $factoryTag->color,
-                        'hidden' => $factoryTag->hidden
+                        'color' => $factoryTag->color
                     ];
 
         // Act

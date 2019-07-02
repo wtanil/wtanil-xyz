@@ -16,7 +16,6 @@ use Faker\Generator as Faker;
 $factory->define(App\Tag::class, function (Faker $faker) {
     return [
         'name' => $faker->word,
-
         'priority' => $faker->numberBetween(1, 10),
         'color' => $faker->randomElement([
             'FFFFFF',
@@ -27,8 +26,7 @@ $factory->define(App\Tag::class, function (Faker $faker) {
             'FFFF00',
             '00FFFF',
             'FF00FF'
-        ]),
-        'hidden' => true
+        ])
     ];
 });
 
