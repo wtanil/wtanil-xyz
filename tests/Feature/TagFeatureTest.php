@@ -54,17 +54,4 @@ class TagFeatureTest extends TestCase
 
     }
 
-/*
-    // Arrange
-        $tags = factory(Tag::class)->create();
-        $tagName = $tags->name;
-
-        // Act
-        $response = $this->call('GET', '/tags');
-
-        // Assert
-        $response->assertSee($tagName);
-*/
-
-
 }
