@@ -42,7 +42,7 @@ class TagFeatureTest extends TestCase
                     ];
 
         // Act
-        $response = $this->actingAs($user)->post(action('TagController@store'), $tagValues);
+        $response = $this->actingAs($this->user)->post(action('TagController@store'), $tagValues);
 
         // Assert
         $response->assertDatabaseHas('tags', $tagValues);
