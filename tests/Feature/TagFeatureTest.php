@@ -45,7 +45,7 @@ class TagFeatureTest extends TestCase
         $response = $this->actingAs($this->user)->post(action('TagController@store'), $tagValues);
 
         // Assert
-        $response->assertDatabaseHas('tags', $tagValues);
+        $this->assertDatabaseHas('tags', $tagValues);
         $response->assertViewIs('tags.index');
         $response->assertSee($tag->name);
 
