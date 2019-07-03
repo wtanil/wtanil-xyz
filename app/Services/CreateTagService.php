@@ -22,8 +22,8 @@ class CreateTagService {
     /**
      *  Create a tag
      *
-     *  @param
-     *  @return void
+     *  @param  [:] inputs  array of inputs
+     *  @return boolean true if creation is successful
      */
     public function create($inputs) {
 
