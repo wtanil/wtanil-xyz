@@ -26,4 +26,5 @@ Route::put('/link/{id}/mark', 'LinkController@mark');
 Route::delete('/link/{id}', 'LinkController@destroy');
 
 // ROUTES FOR TAGS
+Route::get('/tags', 'TagController@index');
 Route::post('/tags', 'TagController@store');

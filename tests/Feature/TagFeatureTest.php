@@ -22,6 +22,8 @@ class TagFeatureTest extends TestCase
 
         $this->user = factory(User::class)->create();
 
+        // $this->withoutExceptionHandling();
+
     }
 
 
@@ -31,6 +33,8 @@ class TagFeatureTest extends TestCase
      */
     public function admin_can_create_tag()
     {
+
+
 
         // Arrange
         $factoryTag = factory(Tag::class)->make();
@@ -44,8 +48,8 @@ class TagFeatureTest extends TestCase
         $response = $this->actingAs($this->user)->post(action('TagController@store'), $tagValues);
 
         // Assert
-        $response->assertViewIs('tags.index');
-        $response->assertSee($tag->name);
+        $response->assertRedirect(action('TagController@index'));
+        $this->assertDatabaseHas('tags', $tagValues);
 
         
 

@@ -33,11 +33,11 @@ class CreateTagServiceTest extends TestCase
     {
         // Arrange
         $factoryTag = factory(Tag::class)->make();
-        $inputs = array(
+        $inputs = [
             'name' => $factoryTag->name,
             'priority' => $factoryTag->priority,
             'color' => $factoryTag->color
-        );
+        ];
 
         // Act
         $this->createTagService->create($inputs);
