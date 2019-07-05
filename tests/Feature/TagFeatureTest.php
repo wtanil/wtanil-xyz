@@ -56,4 +56,19 @@ class TagFeatureTest extends TestCase
 
     }
 
+    /**
+     *  @test
+     *  @group FeatureTag
+     */
+    public function admin_can_access_tag_creation_page()
+    {
+        // Arrange
+        // Act
+        $response = $this->actingAs($this->user)->get(action('TagController@create'));
+
+        // Assert
+        $response->assertViewIs('tags.create');
+
+    }
+
 }
