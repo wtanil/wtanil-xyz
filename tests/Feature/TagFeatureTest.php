@@ -31,11 +31,24 @@ class TagFeatureTest extends TestCase
      *  @test
      *  @group FeatureTag
      */
+    public function admin_can_access_tag_creation_page()
+    {
+        // Arrange
+        // Act
+        $response = $this->actingAs($this->user)->get(action('TagController@create'));
+
+        // Assert
+        $response->assertStatus(200);
+        $response->assertViewIs('tags.create');
+
+    }
+
+    /**
+     *  @test
+     *  @group FeatureTag
+     */
     public function admin_can_create_tag()
     {
-
-
-
         // Arrange
         $factoryTag = factory(Tag::class)->make();
         $tagValues = [
@@ -50,25 +63,8 @@ class TagFeatureTest extends TestCase
         // Assert
         $response->assertRedirect(action('TagController@index'));
         $this->assertDatabaseHas('tags', $tagValues);
-
-        
-
-
     }
 
-    /**
-     *  @test
-     *  @group FeatureTag
-     */
-    public function admin_can_access_tag_creation_page()
-    {
-        // Arrange
-        // Act
-        $response = $this->actingAs($this->user)->get(action('TagController@create'));
-
-        // Assert
-        $response->assertViewIs('tags.create');
-
-    }
+    
 
 }

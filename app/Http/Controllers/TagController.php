@@ -38,7 +38,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        return view('tags.index');
+        // placeholder
+        $tags = collect([]);
+        return view('tags.index', $tags);
     }
 
     /**
@@ -48,7 +50,8 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        // return page to create
+        return view('tags.create');
     }
 
     /**
@@ -60,6 +63,7 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $this->createTagService->create($request->all());
+        // redirect to tag index pag
         return redirect('/tags');
     }
 

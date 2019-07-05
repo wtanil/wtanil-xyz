@@ -3,6 +3,10 @@
 @section('content')
 <div class="container">
 
+    INDEX
+
+{{--
+
     @if ($tags->isNotEmpty())
     @foreach ($tags as $tag)
 
@@ -35,7 +39,7 @@
     @endif
 
 
-
+--}}
 
 </div>
 @endsection

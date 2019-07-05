@@ -27,4 +27,5 @@ Route::delete('/link/{id}', 'LinkController@destroy');
 
 // ROUTES FOR TAGS
 Route::get('/tags', 'TagController@index');
+Route::get('/tags/create', 'TagController@create');
 Route::post('/tags', 'TagController@store');
