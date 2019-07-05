@@ -3,7 +3,12 @@
 @section('content')
 <div class="container">
 
-CREATE
+<form method="POST" action="/tags" class="col-sm">
+    @csrf
+
+
+    
+</form>
 
 </div>
 @endsection
