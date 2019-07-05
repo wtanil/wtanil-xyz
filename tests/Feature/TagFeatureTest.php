@@ -35,8 +35,8 @@ class TagFeatureTest extends TestCase
         // Act
         $response = $this->get(action('TagController@create'));
         // Assert
-        $response->assertStatus(200);
-        $response->assertViewIs('tags.index');
+        $response->assertRedirect(action('Auth\LoginController@showLoginForm'));
+        
     }
 
     /**
@@ -64,8 +64,7 @@ class TagFeatureTest extends TestCase
         // Act
         $response = $this->get(action('TagController@create'));
         // Assert
-        $response->assertStatus(200);
-        $response->assertViewIs('tags.index');
+        $response->assertRedirect(action('Auth\LoginController@showLoginForm'));
     }
 
     /**
