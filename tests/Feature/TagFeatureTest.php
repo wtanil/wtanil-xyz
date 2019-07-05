@@ -26,6 +26,18 @@ class TagFeatureTest extends TestCase
 
     }
 
+    /**
+     *  @test
+     *  @group FeatureTag
+     */
+    public function guest_can_not_access_tag_creation_page() {
+        // Arrange
+        // Act
+        $response = $this->get(action('TagController@create'));
+        // Assert
+        $response->assertStatus(200);
+        $response->assertViewIs('tags.index');
+    }
 
     /**
      *  @test
@@ -41,6 +53,19 @@ class TagFeatureTest extends TestCase
         $response->assertStatus(200);
         $response->assertViewIs('tags.create');
 
+    }
+
+    /**
+     *  @test
+     *  @group FeatureTag
+     */
+    public function guest_can_not_create_tag() {
+        // Arrange
+        // Act
+        $response = $this->get(action('TagController@create'));
+        // Assert
+        $response->assertStatus(200);
+        $response->assertViewIs('tags.index');
     }
 
     /**
@@ -64,6 +89,8 @@ class TagFeatureTest extends TestCase
         $response->assertRedirect(action('TagController@index'));
         $this->assertDatabaseHas('tags', $tagValues);
     }
+
+
 
     
 
