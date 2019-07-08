@@ -89,6 +89,72 @@ class TagFeatureTest extends TestCase
         $this->assertDatabaseHas('tags', $tagValues);
     }
 
+    /**
+     *  @test
+     *  @group FeatureTag
+     */
+    public function admin_can_not_create_tag_without_name()
+    {
+        // Arrange
+        $factoryTag = factory(Tag::class)->make();
+        $tagValues = [
+                        'name' => '',
+                        'priority' => $factoryTag->priority,
+                        'color' => $factoryTag->color
+                    ];
+
+        // Act
+        $response = $this->actingAs($this->user)->post(action('TagController@store'), $tagValues);
+
+        // Assert
+        $response->assertRedirect(action('TagController@store'));
+        $response->assertSessionHasErrors(['name']);
+    }
+
+    /**
+     *  @test
+     *  @group FeatureTag
+     */
+    public function admin_can_not_create_tag_without_priority()
+    {
+        // Arrange
+        $factoryTag = factory(Tag::class)->make();
+        $tagValues = [
+                        'name' => $factoryTag->name,
+                        'priority' => '',
+                        'color' => $factoryTag->color
+                    ];
+
+        // Act
+        $response = $this->actingAs($this->user)->post(action('TagController@store'), $tagValues);
+
+        // Assert
+        $response->assertRedirect(action('TagController@store'));
+        $response->assertSessionHasErrors(['priority']);
+    }
+
+    /**
+     *  @test
+     *  @group FeatureTag
+     */
+    public function admin_can_not_create_tag_without_color()
+    {
+        // Arrange
+        $factoryTag = factory(Tag::class)->make();
+        $tagValues = [
+                        'name' => $factoryTag->name,
+                        'priority' => $factoryTag->priority,
+                        'color' => ''
+                    ];
+
+        // Act
+        $response = $this->actingAs($this->user)->post(action('TagController@store'), $tagValues);
+
+        // Assert
+        $response->assertRedirect(action('TagController@store'));
+        $response->assertSessionHasErrors(['color']);
+    }
+
 
 
     
