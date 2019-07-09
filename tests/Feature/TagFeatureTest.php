@@ -8,12 +8,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\User;
 use App\Tag;
+use App\Http\Requests\StoreTagRequest;
 
 class TagFeatureTest extends TestCase
 {
     use RefreshDatabase;
 
     protected $user;
+    protected $storeTagRequest;
 
     protected function setUp(): void
     {
@@ -75,18 +77,13 @@ class TagFeatureTest extends TestCase
     {
         // Arrange
         $factoryTag = factory(Tag::class)->make();
-        $tagValues = [
-                        'name' => $factoryTag->name,
-                        'priority' => $factoryTag->priority,
-                        'color' => $factoryTag->color
-                    ];
 
         // Act
-        $response = $this->actingAs($this->user)->post(action('TagController@store'), $tagValues);
+        $response = $this->actingAs($this->user)->from('tags')->post(route('tags'), $factoryTag->toArray());
 
         // Assert
-        $response->assertRedirect(action('TagController@index'));
-        $this->assertDatabaseHas('tags', $tagValues);
+        $response->assertRedirect(route('tags'));
+        $this->assertDatabaseHas('tags', $factoryTag->toArray());
     }
 
     /**
@@ -96,18 +93,15 @@ class TagFeatureTest extends TestCase
     public function admin_can_not_create_tag_without_name()
     {
         // Arrange
-        $factoryTag = factory(Tag::class)->make();
-        $tagValues = [
-                        'name' => '',
-                        'priority' => $factoryTag->priority,
-                        'color' => $factoryTag->color
-                    ];
+        $factoryTag = factory(Tag::class)->make([
+            'name' => null
+        ]);
 
         // Act
-        $response = $this->actingAs($this->user)->post(action('TagController@store'), $tagValues);
+        $response = $this->actingAs($this->user)->from('tags/create')->post(action('TagController@store'), $factoryTag->toArray());
 
         // Assert
-        $response->assertRedirect(action('TagController@store'));
+        $response->assertRedirect(route('tags.create'));
         $response->assertSessionHasErrors(['name']);
     }
 
@@ -118,18 +112,15 @@ class TagFeatureTest extends TestCase
     public function admin_can_not_create_tag_without_priority()
     {
         // Arrange
-        $factoryTag = factory(Tag::class)->make();
-        $tagValues = [
-                        'name' => $factoryTag->name,
-                        'priority' => '',
-                        'color' => $factoryTag->color
-                    ];
-
+        $factoryTag = factory(Tag::class)->make([
+            'priority' => null
+        ]);
+      
         // Act
-        $response = $this->actingAs($this->user)->post(action('TagController@store'), $tagValues);
+        $response = $this->actingAs($this->user)->from('tags/create')->post(action('TagController@store'), $factoryTag->toArray());
 
         // Assert
-        $response->assertRedirect(action('TagController@store'));
+        $response->assertRedirect(route('tags.create'));
         $response->assertSessionHasErrors(['priority']);
     }
 
@@ -140,18 +131,15 @@ class TagFeatureTest extends TestCase
     public function admin_can_not_create_tag_without_color()
     {
         // Arrange
-        $factoryTag = factory(Tag::class)->make();
-        $tagValues = [
-                        'name' => $factoryTag->name,
-                        'priority' => $factoryTag->priority,
-                        'color' => ''
-                    ];
+        $factoryTag = factory(Tag::class)->make([
+            'color' => null
+        ]);
 
         // Act
-        $response = $this->actingAs($this->user)->post(action('TagController@store'), $tagValues);
+        $response = $this->actingAs($this->user)->from('tags/create')->post(action('TagController@store'), $factoryTag->toArray());
 
         // Assert
-        $response->assertRedirect(action('TagController@store'));
+        $response->assertRedirect(route('tags.create'));
         $response->assertSessionHasErrors(['color']);
     }
 

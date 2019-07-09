@@ -28,6 +28,7 @@ class TagController extends Controller
 
         $this->createTagService = $createTagService;
 
+        $this->middleware('auth');
     }
 
 
@@ -62,9 +63,17 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
+
+        // Validation
+        $request->validate([
+            'name' => 'required',
+            'priority' => 'required|between:1,10|numeric',
+            'color' => 'required|between:3,6'
+        ]);
+
         $this->createTagService->create($request->all());
-        // redirect to tag index pag
-        return redirect('/tags');
+        // redirect to tag index page
+        return redirect()->route('tags');
     }
 
     /**
