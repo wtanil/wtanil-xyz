@@ -32,7 +32,8 @@ class TagFeatureTest extends TestCase
      *  @test
      *  @group FeatureTag
      */
-    public function guest_can_not_access_tag_creation_page() {
+    public function guest_can_not_access_tag_creation_page()
+    {
         // Arrange
         // Act
         $response = $this->get(action('TagController@create'));
@@ -62,11 +63,15 @@ class TagFeatureTest extends TestCase
      *  @group FeatureTag
      */
     public function guest_can_not_create_tag() {
+
         // Arrange
+        $factoryTag = factory(Tag::class)->make();
         // Act
-        $response = $this->get(action('TagController@create'));
+        $response = $this->actingAs($this->user)->from('tags')->post(route('tags'), $factoryTag->toArray());
         // Assert
-        $response->assertRedirect(action('Auth\LoginController@showLoginForm'));
+        $response->assertRedirect(route('tags'));
+        // $this->followingRedirects()->assertRedirect('Auth\LoginController@showLoginForm');
+        // $response->assertRedirect(action('Auth\LoginController@showLoginForm'));
     }
 
     /**
@@ -142,6 +147,37 @@ class TagFeatureTest extends TestCase
         $response->assertRedirect(route('tags.create'));
         $response->assertSessionHasErrors(['color']);
     }
+
+    /**
+     *  @test
+     *  @group FeatureTag
+     */
+    public function guest_can_not_access_tag_index_page()
+    {
+        // Arrange
+        // Act
+        $response = $this->get(route('tags'));
+        // Assert
+        $response->assertRedirect(action('Auth\LoginController@showLoginForm'));
+    }
+
+    /**
+     *  @test
+     *  @group FeatureTag
+     */
+    public function admin_can_access_tag_index_page()
+    {
+        // Arrange
+        // Act
+        $response = $this->actingAs($this->user)->get(route('tags'));
+
+        // Assert
+        $response->assertStatus(200);
+        $response->assertViewIs('tags.index');
+    }
+
+
+
 
 
 

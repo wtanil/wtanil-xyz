@@ -26,8 +26,9 @@ Route::put('/link/{id}/mark', 'LinkController@mark');
 Route::delete('/link/{id}', 'LinkController@destroy');
 
 // ROUTES FOR TAGS
-Route::get('/tags', 'TagController@index')->name('tags');
+
 Route::middleware(['auth'])->group(function () {
+    Route::get('/tags', 'TagController@index')->name('tags');
     Route::get('/tags/create', 'TagController@create')->name('tags.create');
     Route::post('/tags', 'TagController@store')->name('tags.store');
 });
