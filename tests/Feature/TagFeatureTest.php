@@ -205,10 +205,10 @@ class TagFeatureTest extends TestCase
         $id = $factoryTag->id;
 
         // Act
-        $response = $this->delete(route('tags.delete', ['id' => $id]));
+        $response = $this->delete(route('tags.destroy', ['id' => $id]));
 
         // Assert
-        $response->assertRedirect(route('tags'));
+        $response->assertRedirect(action('Auth\LoginController@showLoginForm'));
         
     }
 
@@ -223,11 +223,12 @@ class TagFeatureTest extends TestCase
         $id = $factoryTag->id;
 
         // Act
-        $response = $this->actingAs($this->user)->delete(route('tags.delete', ['id' => $id]));
+        $response = $this->actingAs($this->user)->delete(route('tags.destroy', ['id' => $id]));
 
         // Assert
         $response->assertDontSee($factoryTag['name']);
         $response->assertRedirect(route('tags'));
+        
         $this->assertDatabaseMissing('tags', $factoryTag->toArray());
     }
 

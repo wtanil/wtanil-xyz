@@ -6,7 +6,9 @@ use App\Tag;
 use Illuminate\Http\Request;
 
 use App\Services\CreateTagService;
+use App\Services\DeleteTagService;
 use App\Services\TagQueryService;
+
 
 class TagController extends Controller
 {
@@ -17,6 +19,7 @@ class TagController extends Controller
      * @var 
      */
     protected $createTagService;
+    protected $deleteTagService;
     protected $tagQueryService;
 
     /**
@@ -27,11 +30,13 @@ class TagController extends Controller
      */
     public function __construct(
         CreateTagService $createTagService,
+        DeleteTagService $deleteTagService,
         TagQueryService $tagQueryService
     )
     {
 
         $this->createTagService = $createTagService;
+        $this->deleteTagService = $deleteTagService;
         $this->tagQueryService = $tagQueryService;
 
         $this->middleware('auth');
@@ -123,8 +128,21 @@ class TagController extends Controller
      * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy($id)
     {
-        //
+        
+        $deleted = $this->deleteTagService->delete($id);
+
+        if ($deleted)
+        {
+            return redirect()->route('tags')->with('deleteCount', $deleted);
+        }
+        else
+        {
+            $deleteMessage = 'Failed to delete tag with id ' . $id;
+            return redirect()->route('tags')->with('deleteFailed', $deleteMessage);
+        }
+
+        
     }
 }

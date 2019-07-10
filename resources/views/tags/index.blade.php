@@ -5,6 +5,22 @@
 
     INDEX
 
+    @if (isset($deleteCount))
+    <div class="row">
+        <div class="alert alert-success" role="alert">
+            {{ $deleteCount }}
+        </div>
+    </div>
+    @endif
+
+    @if (isset($deleteFailed))
+    <div class="row">
+        <div class="alert alert-danger" role="alert">
+            {{ $deleteFailed }}
+        </div>
+    </div>
+    @endif
+
     <table class="table table-stripped table-bordered">
         <thead>
             <tr>
@@ -12,6 +28,7 @@
                 <th scope="col">Tags</th>
                 <th scope="col">Priority</th>
                 <th scope="col">Color</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +47,16 @@
                 </td>
                 <td>
                     {{ $tag->color }}
+                </td>
+                <td>
+                    <form action="/tags/{{ $tag->id }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <!-- Add Category Button -->
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa fa-plus"></i>X
+                        </button>
+                    </form>
                 </td>
             </tr>
 
