@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Auth;
-
 use App\Tag;
 
 class CreateTagService {

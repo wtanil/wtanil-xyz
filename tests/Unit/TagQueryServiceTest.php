@@ -12,6 +12,8 @@ use App\Services\TagQueryService;
 class TagQueryServiceTest extends TestCase
 {
 
+    use RefreshDatabase;
+
     protected $tagQueryService;
 
     protected function setUp(): void
@@ -23,21 +25,35 @@ class TagQueryServiceTest extends TestCase
 
     }
 
+    /**
+     *  @test
+     *  @group UnitCreateTagService
+     */
+    public function getAll_Empty_ReturnNothing()
+    {
+        // Arrange
+        // Act
+        $tags = $this->tagQueryService->getAll();
+
+        // Assert
+        $this->assertCount(0, $tags);
+        
+    }
 
     /**
      *  @test
      *  @group UnitCreateTagService
      */
-    public function get__ReturnAll()
+    public function getAll_WithTagsInDB_ReturnAll()
     {
         // Arrange
-        $factoryTag = factory(Tag::class)->create();
-        
+        $factoryTag = factory(Tag::class, 2)->create();
+
         // Act
-        $tags = $this->tagQueryService->get();
+        $tags = $this->tagQueryService->getAll();
 
         // Assert
-        $this->assertEqual($factoryTag->toArray(), $tags->toArray());
+        $this->assertCount(2, $tags);
         
     }
 
