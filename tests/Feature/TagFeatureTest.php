@@ -194,6 +194,44 @@ class TagFeatureTest extends TestCase
         $response->assertSee($factoryTag['color']);
     }
 
+    /**
+     *  @test
+     *  @group FeatureTag
+     */
+    public function guest_can_not_delete_a_tag()
+    {
+        // Arrange
+        $factoryTag = factory(Tag::class)->create();
+        $id = $factoryTag->id;
+
+        // Act
+        $response = $this->delete(route('tags.destroy', ['id' => $id]));
+
+        // Assert
+        $response->assertRedirect(action('Auth\LoginController@showLoginForm'));
+        
+    }
+
+    /**
+     *  @test
+     *  @group FeatureTag
+     */
+    public function admin_can_delete_a_tag()
+    {
+        // Arrange
+        $factoryTag = factory(Tag::class)->create();
+        $id = $factoryTag->id;
+
+        // Act
+        $response = $this->actingAs($this->user)->delete(route('tags.destroy', ['id' => $id]));
+
+        // Assert
+        $response->assertDontSee($factoryTag['name']);
+        $response->assertRedirect(route('tags'));
+        
+        $this->assertDatabaseMissing('tags', $factoryTag->toArray());
+    }
+
 
 
 
