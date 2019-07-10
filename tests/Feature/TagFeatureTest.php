@@ -176,6 +176,21 @@ class TagFeatureTest extends TestCase
         $response->assertViewIs('tags.index');
     }
 
+    /**
+     *  @test
+     *  @group FeatureTag
+     */
+    public function admin_can_see_all_tags_in_index_page()
+    {
+        // Arrange
+        $factoryTags = factory(Tag::class, 5)->create();
+
+        // Act
+        $response = $this->actingAs($this->user)->get(route('tags'));
+        // Assert
+        $response->assertSee($factoryTags);
+    }
+
 
 
 
