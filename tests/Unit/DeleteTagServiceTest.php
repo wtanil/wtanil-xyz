@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Tag;
-use App\Services\CreateTagService;
+use App\Services\DeleteTagService;
 
 class DeleteTagServiceTest extends TestCase
 {
@@ -39,9 +39,10 @@ class DeleteTagServiceTest extends TestCase
         $id = $tag->id;
 
         // Act
-        $this->deleteTagService->delete($id);
+        $deleted = $this->deleteTagService->delete($id);
 
         // Assert
-        $this->assertDatabaseMissing('tags', $tag);
+        $this->assertEquals(1, $deleted);
+        $this->assertDatabaseMissing('tags', $tag->toArray());
     }
 }
