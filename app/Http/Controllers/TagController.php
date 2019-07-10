@@ -6,6 +6,7 @@ use App\Tag;
 use Illuminate\Http\Request;
 
 use App\Services\CreateTagService;
+use App\Services\TagQueryService;
 
 class TagController extends Controller
 {
@@ -16,6 +17,7 @@ class TagController extends Controller
      * @var 
      */
     protected $createTagService;
+    protected $tagQueryService;
 
     /**
      * Create a new controller instance.
@@ -23,10 +25,14 @@ class TagController extends Controller
      * @param  
      * @return void
      */
-    public function __construct(CreateTagService $createTagService)
+    public function __construct(
+        CreateTagService $createTagService,
+        TagQueryService $tagQueryService
+    )
     {
 
         $this->createTagService = $createTagService;
+        $this->tagQueryService = $tagQueryService;
 
         $this->middleware('auth');
     }
@@ -39,9 +45,10 @@ class TagController extends Controller
      */
     public function index()
     {
-        // placeholder
-        $tags = collect([]);
-        return view('tags.index', $tags);
+        
+        $tags = $this->tagQueryService->getAll();
+        
+        return view('tags.index')->with('tags', $tags);
     }
 
     /**

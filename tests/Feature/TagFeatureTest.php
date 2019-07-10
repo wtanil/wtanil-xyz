@@ -183,12 +183,15 @@ class TagFeatureTest extends TestCase
     public function admin_can_see_all_tags_in_index_page()
     {
         // Arrange
-        $factoryTags = factory(Tag::class, 5)->create();
+        $factoryTag = factory(Tag::class)->create();
 
         // Act
         $response = $this->actingAs($this->user)->get(route('tags'));
+
         // Assert
-        $response->assertSee($factoryTags);
+        $response->assertSee($factoryTag['name']);
+        $response->assertSee($factoryTag['priority']);
+        $response->assertSee($factoryTag['color']);
     }
 
 
