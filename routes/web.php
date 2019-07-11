@@ -33,3 +33,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/tags', 'TagController@store')->name('tags.store');
     Route::delete('/tags/{id}', 'TagController@destroy')->name('tags.destroy');
 });
+
+// ROUTES FOR PROJECTS
+Route::middleware(['auth'])->group(function () {
+    Route::get('/projects/create', 'ProjectController@create')->name('projects.create');
+});
