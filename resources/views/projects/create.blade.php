@@ -37,12 +37,12 @@
                 <fieldset class="form-group">
                     <legend class="col-form-label">Hidden</legend>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="hidden" id="hidden1" value="true" checked>
+                        <input class="form-check-input" type="radio" name="hidden" id="hidden1" value=true checked>
                         <label class="form-check-label" for="gridRadios1">True</label>
                     </div>
                     
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="hidden" id="hidden2" value="false">
+                        <input class="form-check-input" type="radio" name="hidden" id="hidden2" value=false>
                         <label class="form-check-label" for="gridRadios1">False</label>
                     </div>
                 </fieldset>
