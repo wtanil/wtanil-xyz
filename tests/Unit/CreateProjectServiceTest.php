@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use App\Tag;
+use App\Project;
 use App\Services\CreateProjectService;
 
 class CreateProjectServiceTest extends TestCase
