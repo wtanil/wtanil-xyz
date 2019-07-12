@@ -14,7 +14,10 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        // placeholder
+        $projects = collect();
+        
+        return view('projects.index')->with('projects', $projects);
     }
 
     /**
@@ -24,7 +27,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        // return page to create
+        return view('projects.create');
     }
 
     /**
@@ -35,7 +39,9 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+
+        return redirect()->route('projects');
     }
 
     /**
