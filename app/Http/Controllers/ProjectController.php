@@ -5,8 +5,36 @@ namespace App\Http\Controllers;
 use App\Project;
 use Illuminate\Http\Request;
 
+use App\Services\CreateProjectService;
+
 class ProjectController extends Controller
 {
+
+    /**
+     * The project service instance.
+     *
+     * @var 
+     */
+    protected $createProjectService;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @param  
+     * @return void
+     */
+    public function __construct(
+        CreateProjectService $createProjectService
+    )
+    {
+
+        $this->createProjectService = $createProjectService;
+
+        $this->middleware('auth');
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +67,16 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // Validation
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'hidden' => 'required',
+            'start_date' => 'required',
+            'last_update_date' => 'required'
+        ]);
+
+        $this->createProjectService->create($request->all());
 
         return redirect()->route('projects');
     }

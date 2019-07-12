@@ -18,7 +18,7 @@ class CreateProjectService {
 
 
     /**
-     *  Create a tag
+     *  Create a project
      *
      *  @param  [:] inputs  array of inputs
      *  @return boolean true if creation is successful
