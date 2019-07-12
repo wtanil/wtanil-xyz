@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\User;
 use App\Tag;
-use App\Http\Requests\StoreTagRequest;
 
 class TagFeatureTest extends TestCase
 {
@@ -67,11 +66,11 @@ class TagFeatureTest extends TestCase
         // Arrange
         $factoryTag = factory(Tag::class)->make();
         // Act
-        $response = $this->actingAs($this->user)->from('tags')->post(route('tags'), $factoryTag->toArray());
+        $response = $this->from('tags')->post(route('tags'), $factoryTag->toArray());
         // Assert
-        $response->assertRedirect(route('tags'));
+        // $response->assertRedirect(route('tags'));
         // $this->followingRedirects()->assertRedirect('Auth\LoginController@showLoginForm');
-        // $response->assertRedirect(action('Auth\LoginController@showLoginForm'));
+        $response->assertRedirect(action('Auth\LoginController@showLoginForm'));
     }
 
     /**

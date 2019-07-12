@@ -14,7 +14,7 @@ class TagController extends Controller
 {
 
     /**
-     * The create tag service instance.
+     * The tag service instance.
      *
      * @var 
      */
