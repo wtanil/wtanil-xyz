@@ -92,5 +92,60 @@ class ProjectFeatureTest extends TestCase
 
 
 
+    /**
+     *  @test
+     *  @group FeatureProject
+     */
+    public function guest_can_not_access_project_index_page()
+    {
+        // Arrange
+        // Act
+        $response = $this->get(route('projects'));
+        // Assert
+        $response->assertRedirect(action('Auth\LoginController@showLoginForm'));
+    }
+
+    /**
+     *  @test
+     *  @group FeatureProject
+     */
+    public function admin_can_access_project_index_page()
+    {
+        // Arrange
+        // Act
+        $response = $this->actingAs($this->user)->get(route('projects'));
+
+        // Assert
+        $response->assertStatus(200);
+        $response->assertViewIs('projects.index');
+    }
+
+    /**
+     *  @test
+     *  @group FeatureProject
+     */
+    public function admin_can_see_all_projects_in_index_page()
+    {
+        // Arrange
+        $factoryHiddenProject = factory(Project::class)->create();
+        $factoryProject = factory(Project::class)->create([
+            'hidden' => false
+        ]);
+
+        // Act
+        $response = $this->actingAs($this->user)->get(route('projects'));
+
+        // Assert
+        $response->assertSee($factoryHiddenProject['name']);
+        $response->assertSee($factoryHiddenProject['hidden']);
+        $response->assertSee($factoryHiddenProject['start_date']);
+        $response->assertSee($factoryHiddenProject['last_update_date']);
+
+        $response->assertSee($factoryProject['name']);
+        $response->assertSee($factoryProject['hidden']);
+        $response->assertSee($factoryProject['start_date']);
+        $response->assertSee($factoryProject['last_update_date']);
+    }
+
 
 }
