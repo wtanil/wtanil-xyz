@@ -6,6 +6,7 @@ use App\Project;
 use Illuminate\Http\Request;
 
 use App\Services\CreateProjectService;
+use App\Services\ProjectQueryService;
 
 class ProjectController extends Controller
 {
@@ -16,6 +17,7 @@ class ProjectController extends Controller
      * @var 
      */
     protected $createProjectService;
+    protected $projectQueryService;
 
     /**
      * Create a new controller instance.
@@ -24,11 +26,13 @@ class ProjectController extends Controller
      * @return void
      */
     public function __construct(
-        CreateProjectService $createProjectService
+        CreateProjectService $createProjectService,
+        ProjectQueryService $projectQueryService
     )
     {
 
         $this->createProjectService = $createProjectService;
+        $this->projectQueryService = $projectQueryService;
 
         $this->middleware('auth');
     }
@@ -43,7 +47,7 @@ class ProjectController extends Controller
     public function index()
     {
         // placeholder
-        $projects = collect();
+        $projects = $this->projectQueryService->getAll();
         
         return view('projects.index')->with('projects', $projects);
     }
