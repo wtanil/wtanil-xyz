@@ -25,7 +25,7 @@ class ProjectQueryService {
      */
     public function getAll() {
 
-        return Project::orderBy('started_date', 'desc')->get();
+        return Project::orderBy('start_date', 'desc')->get();
 
     }
 
