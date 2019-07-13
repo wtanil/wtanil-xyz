@@ -30,7 +30,7 @@ class DeleteTagServiceTest extends TestCase
 
     /**
      *  @test
-     *  @group UnitCreateTagService
+     *  @group UnitDeleteTagService
      */
     public function delete_ValidRequirements_TagIsDeleted()
     {

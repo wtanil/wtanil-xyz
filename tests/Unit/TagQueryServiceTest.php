@@ -27,7 +27,7 @@ class TagQueryServiceTest extends TestCase
 
     /**
      *  @test
-     *  @group UnitCreateTagService
+     *  @group UnitTagQueryService
      */
     public function getAll_Empty_ReturnNothing()
     {
@@ -42,7 +42,7 @@ class TagQueryServiceTest extends TestCase
 
     /**
      *  @test
-     *  @group UnitCreateTagService
+     *  @group UnitTagQueryService
      */
     public function getAll_WithTagsInDB_ReturnAll()
     {
