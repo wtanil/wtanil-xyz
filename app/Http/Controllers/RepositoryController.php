@@ -13,7 +13,10 @@ class RepositoryController extends Controller
      */
     public function index()
     {
-        //
+        
+        $projects = collect();
+
+        return view('projects.index')->with('projects', $projects);
     }
 
     
