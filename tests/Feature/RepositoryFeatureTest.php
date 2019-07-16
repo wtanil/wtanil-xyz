@@ -34,11 +34,11 @@ class RepositoryFeatureTest extends TestCase
         // Arrange
         $this->user = factory(User::class)->create();
         // Act
-        $response = $this->actingAs($this->user)->get(route('repository.index'));
+        $response = $this->actingAs($this->user)->get(route('repository'));
 
         // Assert
         $response->assertStatus(200);
-        $response->assertViewIs('repository.index');
+        $response->assertViewIs('repository');
 
     }
 
@@ -50,11 +50,11 @@ class RepositoryFeatureTest extends TestCase
     {
         // Arrange
         // Act
-        $response = $this->get(route('repository.index'));
+        $response = $this->get(route('repository'));
 
         // Assert
         $response->assertStatus(200);
-        $response->assertViewIs('repository.index');
+        $response->assertViewIs('repository');
 
     }
 
@@ -64,7 +64,7 @@ class RepositoryFeatureTest extends TestCase
         $factoryProject = factory(Project::class, 2)->create();
 
         // Act
-        $response = $this->get(route('repository.index'));
+        $response = $this->get(route('repository'));
 
         // Assert
         foreach($factoryProjects as $factoryProject) {
@@ -82,7 +82,7 @@ class RepositoryFeatureTest extends TestCase
         ]);
 
         // Act
-        $response = $this->get(route('repository.index'));
+        $response = $this->get(route('repository'));
 
         // Assert
 

@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@index')->name('home');
@@ -26,7 +26,6 @@ Route::put('/link/{id}/mark', 'LinkController@mark');
 Route::delete('/link/{id}', 'LinkController@destroy');
 
 // ROUTES FOR TAGS
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/tags', 'TagController@index')->name('tags');
     Route::get('/tags/create', 'TagController@create')->name('tags.create');
@@ -41,3 +40,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/projects', 'ProjectController@store')->name('projects.store');
 
 });
+
+// ROUTES FOR REPOSITORY
+Route::get('/', 'RepositoryController@index')->name('repository');
