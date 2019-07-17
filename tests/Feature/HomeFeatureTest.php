@@ -60,12 +60,14 @@ class HomeFeatureTest extends TestCase
 
     /**
      *  @test
-     *  @group FeatureRepository
+     *  @group FeatureHome
      */
     public function guest_can_see_projects()
     {
         // Arrange
-        $factoryProjects = factory(Project::class, 2)->create();
+        $factoryProjects = factory(Project::class, 2)->create([
+            'hidden' => false
+        ]);
 
         // Act
         $response = $this->get(route('home'));
@@ -73,21 +75,18 @@ class HomeFeatureTest extends TestCase
         // Assert
         foreach($factoryProjects as $factoryProject) {
             $response->assertSee($factoryProject['name']);
-            $response->assertSee($factoryProject['start_date']);
         }
 
     }
 
     /**
      *  @test
-     *  @group FeatureRepository
+     *  @group FeatureHome
      */
     public function guest_can_not_see_hidden_projects()
     {
         // Arrange
-        $factoryHiddenProjects = factory(Project::class, 2)->create([
-            'hidden' => false
-        ]);
+        $factoryHiddenProjects = factory(Project::class, 2)->create();
 
         // Act
         $response = $this->get(route('home'));
@@ -96,7 +95,6 @@ class HomeFeatureTest extends TestCase
 
         foreach($factoryHiddenProjects as $factoryHiddenProject) {
             $response->assertDontSee($factoryHiddenProject['name']);
-            $response->assertDontSee($factoryHiddenProject['start_date']);
         }
 
     }
