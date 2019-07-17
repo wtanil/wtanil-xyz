@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Project;
 use Illuminate\Http\Request;
+
 
 use App\Services\CreateProjectService;
 use App\Services\ProjectQueryService;
@@ -46,7 +46,6 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        // placeholder
         $projects = $this->projectQueryService->getAll();
         
         return view('projects.index')->with('projects', $projects);

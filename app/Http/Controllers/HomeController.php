@@ -4,16 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Services\ProjectQueryService;
+
 class HomeController extends Controller
 {
+
+    /**
+     * The project service instance.
+     *
+     * @var 
+     */
+    protected $projectQueryService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ProjectQueryService $projectQueryService)
     {
-        
+        $this->projectQueryService = $projectQueryService;
     }
 
     /**
@@ -23,7 +33,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $projects = collect();
+        $projects = $this->projectQueryService->forPublic();
 
         return view('homes.index')->with('projects', $projects);
     }
