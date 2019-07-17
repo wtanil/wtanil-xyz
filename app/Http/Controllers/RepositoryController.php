@@ -16,7 +16,7 @@ class RepositoryController extends Controller
         
         $projects = collect();
 
-        return view('projects.index')->with('projects', $projects);
+        return view('repositories.index')->with('projects', $projects);
     }
 
     

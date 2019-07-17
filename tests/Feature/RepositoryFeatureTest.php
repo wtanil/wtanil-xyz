@@ -58,10 +58,14 @@ class RepositoryFeatureTest extends TestCase
 
     }
 
+    /**
+     *  @test
+     *  @group FeatureRepository
+     */
     public function guest_can_see_projects()
     {
         // Arrange
-        $factoryProject = factory(Project::class, 2)->create();
+        $factoryProjects = factory(Project::class, 2)->create();
 
         // Act
         $response = $this->get(route('repository'));
@@ -74,6 +78,10 @@ class RepositoryFeatureTest extends TestCase
 
     }
 
+    /**
+     *  @test
+     *  @group FeatureRepository
+     */
     public function guest_can_not_see_hidden_projects()
     {
         // Arrange
