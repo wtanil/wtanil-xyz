@@ -16,7 +16,7 @@
 // });
 
 Auth::routes(['register' => false]);
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 
 // ROUTES FOR LINKS APPLICATION
@@ -42,4 +42,5 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // ROUTES FOR REPOSITORY
-Route::get('/', 'RepositoryController@index')->name('repository');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');

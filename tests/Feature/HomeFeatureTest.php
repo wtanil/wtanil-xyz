@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use App\Project;
 
-class RepositoryFeatureTest extends TestCase
+class HomeFeatureTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -27,34 +27,34 @@ class RepositoryFeatureTest extends TestCase
 
     /**
      *  @test
-     *  @group FeatureRepository
+     *  @group FeatureHome
      */
-    public function admin_can_access_repository_index_page()
+    public function admin_can_access_home_index_page()
     {
         // Arrange
         $this->user = factory(User::class)->create();
         // Act
-        $response = $this->actingAs($this->user)->get(route('repository'));
+        $response = $this->actingAs($this->user)->get(route('home'));
 
         // Assert
         $response->assertStatus(200);
-        $response->assertViewIs('repository');
+        $response->assertViewIs('homes.index');
 
     }
 
     /**
      *  @test
-     *  @group FeatureRepository
+     *  @group FeatureHome
      */
-    public function guest_can_access_repository_index_page()
+    public function guest_can_access_home_index_page()
     {
         // Arrange
         // Act
-        $response = $this->get(route('repository'));
+        $response = $this->get(route('home'));
 
         // Assert
         $response->assertStatus(200);
-        $response->assertViewIs('repository');
+        $response->assertViewIs('homes.index');
 
     }
 
@@ -68,7 +68,7 @@ class RepositoryFeatureTest extends TestCase
         $factoryProjects = factory(Project::class, 2)->create();
 
         // Act
-        $response = $this->get(route('repository'));
+        $response = $this->get(route('home'));
 
         // Assert
         foreach($factoryProjects as $factoryProject) {
@@ -90,7 +90,7 @@ class RepositoryFeatureTest extends TestCase
         ]);
 
         // Act
-        $response = $this->get(route('repository'));
+        $response = $this->get(route('home'));
 
         // Assert
 
