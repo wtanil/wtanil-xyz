@@ -23,10 +23,23 @@ class ProjectQueryService {
      *  @param  
      *  @return Collection 
      */
-    public function getAll() {
+    public function getAll()
+    {
 
         return Project::orderBy('start_date', 'desc')->get();
 
+    }
+
+    /**
+     *  Get all not hidden projects
+     *
+     *  @param  
+     *  @return Collection 
+     */
+    public function forPublic()
+    {
+
+        return Project::where('hidden', false)->orderBy('started_date', 'desc')->get();
     }
 
 

@@ -78,7 +78,7 @@ class ProjectQueryServiceTest extends TestCase
      *  @test
      *  @group UnitProjectQueryService
      */
-    public function getAll_WithHiddenProjectsInDB_ReturnNotHiddenProjects()
+    public function forPublic_WithHiddenProjectsInDB_ReturnNotHiddenProjects()
     {
         // Arrange
         $factoryHiddenProject = factory(Project::class, 2)->create();
