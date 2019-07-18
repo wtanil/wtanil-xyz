@@ -162,7 +162,7 @@ class ProjectFeatureTest extends TestCase
         ]);
         $id = $factoryProject->id;
         // Act
-        $response = $this->from('projects')->post(route('projects.toggle', ['id' => $id]));
+        $response = $this->from('projects')->put(route('projects.toggle', ['id' => $id]));
         // Assert
         $response->assertRedirect(action('Auth\LoginController@showLoginForm'));
 
