@@ -38,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/projects', 'ProjectController@index')->name('projects');
     Route::get('/projects/create', 'ProjectController@create')->name('projects.create');
     Route::post('/projects', 'ProjectController@store')->name('projects.store');
+    Route::put('/projects/{id}/toggle', 'ProjectController@toggleVisibility')->name('projects.toggle');
 
 });
 
