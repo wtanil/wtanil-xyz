@@ -180,14 +180,11 @@ class ProjectFeatureTest extends TestCase
             'hidden' => false
         ]);
         $id = $factoryProject->id;
-        $expectedProject = $factoryProject->toArray();
-        $expectedProject['hidden'] = true;
 
         // Act
         $response = $this->actingAs($this->user)->from('projects')->post(route('projects.toggle', ['id' => $id]));
 
         // Assert
-        $this->assertDatabaseHas('projects', $expectedProject);
         $response->assertRedirect(route('projects'));
         $response->assertDontSee($factoryProject['name']);
 
@@ -202,14 +199,11 @@ class ProjectFeatureTest extends TestCase
         // Arrange
         $factoryProject = factory(Project::class)->create();
         $id = $factoryProject->id;
-        $expectedProject = $factoryProject->toArray();
-        $expectedProject['hidden'] = false;
 
         // Act
         $response = $this->actingAs($this->user)->from('projects')->post(route('projects.toggle', ['id' => $id]));
 
         // Assert
-        $this->assertDatabaseHas('projects', $expectedProject);
         $response->assertRedirect(route('projects'));
         $response->assertSee($factoryProject['name']);
 
