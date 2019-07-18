@@ -148,4 +148,72 @@ class ProjectFeatureTest extends TestCase
     }
 
 
+
+
+    /**
+     *  @test
+     *  @group FeatureProject
+     */
+    public function guest_can_not_set_project_to_hidden()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create([
+            'hidden' => false
+        ]);
+        $id = $factoryProject->id;
+        // Act
+        $response = $this->from('projects')->post(route('projects.toggle', ['id' => $id]));
+        // Assert
+        $response->assertRedirect(action('Auth\LoginController@showLoginForm'));
+
+
+    }
+
+    /**
+     *  @test
+     *  @group FeatureProject
+     */
+    public function admin_can_set_project_to_hidden()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create([
+            'hidden' => false
+        ]);
+        $id = $factoryProject->id;
+        $expectedProject = $factoryProject->toArray();
+        $expectedProject['hidden'] = true;
+
+        // Act
+        $response = $this->actingAs($this->user)->from('projects')->post(route('projects.toggle', ['id' => $id]));
+
+        // Assert
+        $this->assertDatabaseHas('projects', $expectedProject);
+        $response->assertRedirect(route('projects'));
+        $response->assertDontSee($factoryProject['name']);
+
+    }
+
+    /**
+     *  @test
+     *  @group FeatureProject
+     */
+    public function admin_can_set_project_to_visible()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create();
+        $id = $factoryProject->id;
+        $expectedProject = $factoryProject->toArray();
+        $expectedProject['hidden'] = false;
+
+        // Act
+        $response = $this->actingAs($this->user)->from('projects')->post(route('projects.toggle', ['id' => $id]));
+
+        // Assert
+        $this->assertDatabaseHas('projects', $expectedProject);
+        $response->assertRedirect(route('projects'));
+        $response->assertSee($factoryProject['name']);
+
+    }
+
+
 }
