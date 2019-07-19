@@ -24,13 +24,13 @@
                 <!-- Name -->
                 <div class="form-group">
                     <label class="col-form-label" for="name">Name</label>
-                    <input type="text" name="name" id="name" class="form-control">
+                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
                 </div>
 
                 <!-- Description -->
                 <div class="form-group">
                     <label class="col-form-label" for="description">Description</label>
-                    <textarea name="description" id="description" class="form-control" rows="5"></textarea>
+                    <textarea name="description" id="description" class="form-control" rows="5">{{ old('description') }}</textarea>
                 </div>
 
                 <!-- Hidden -->
@@ -51,7 +51,7 @@
                 <div class="row">
                     <div class="form-group col-12 col-md-6">
                         <label class="col-form-label" for="start_date">Start Date</label>
-                        <input type="date" name="start_date" id="start_date" class="form-control">
+                        <input type="date" name="start_date" id="start_date" class="form-control"  value="{{ old('start_date') }}">
                     </div>
                 </div>
 
@@ -59,7 +59,7 @@
                 <div class="row">
                     <div class="form-group col-12 col-md-6">
                         <label class="col-form-label" for="last_update_date">Last Update Date</label>
-                        <input type="date" name="last_update_date" id="last_update_date" class="form-control">
+                        <input type="date" name="last_update_date" id="last_update_date" class="form-control"  value="{{ old('last_update_date') }}">
                     </div>
                 </div>
 
