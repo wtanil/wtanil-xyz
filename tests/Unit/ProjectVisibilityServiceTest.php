@@ -34,8 +34,9 @@ class ProjectVisibilityServiceTest extends TestCase
         $expectedProject = $factoryProject->toArray();
         $expectedProject['hidden'] = false;
         // Act
-        $this->projectVisibilityService->toggleVisibility($factoryProject->id);
+        $success = $this->projectVisibilityService->toggleVisibility($factoryProject->id);
         // Assert
+        $this->assertTrue($success);
         $this->assertDatabaseHas('projects', $expectedProject);
 
     }
@@ -53,8 +54,9 @@ class ProjectVisibilityServiceTest extends TestCase
         $expectedProject = $factoryProject->toArray();
         $expectedProject['hidden'] = true;
         // Act
-        $this->projectVisibilityService->toggleVisibility($factoryProject->id);
+        $success = $this->projectVisibilityService->toggleVisibility($factoryProject->id);
         // Assert
+        $this->assertTrue($success);
         $this->assertDatabaseHas('projects', $expectedProject);
     }
 }
