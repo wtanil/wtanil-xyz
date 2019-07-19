@@ -148,4 +148,72 @@ class ProjectFeatureTest extends TestCase
     }
 
 
+
+
+    /**
+     *  @test
+     *  @group FeatureProject
+     */
+    public function guest_can_not_set_project_to_hidden()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create([
+            'hidden' => false
+        ]);
+        $id = $factoryProject->id;
+        // Act
+        $response = $this->from('projects')->put(route('projects.toggle', ['id' => $id]));
+        // Assert
+        $response->assertRedirect(action('Auth\LoginController@showLoginForm'));
+
+
+    }
+
+    /**
+     *  @test
+     *  @group FeatureProject
+     */
+    public function admin_can_set_project_to_hidden()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create([
+            'hidden' => false
+        ]);
+        $id = $factoryProject->id;
+
+        // Act
+        $responseProjectPage = $this->actingAs($this->user)->from('projects')->put(route('projects.toggle', ['id' => $id]));
+        // Another test to make sure that the project is hidden on home page
+        $responseHomePage = $this->get(route('home'));
+
+        // Assert
+        $responseProjectPage->assertRedirect(route('projects'));
+        // Another test to make sure that the project is hidden on home page
+        $responseHomePage->assertDontSee($factoryProject['name']);
+
+    }
+
+    /**
+     *  @test
+     *  @group FeatureProject
+     */
+    public function admin_can_set_project_to_visible()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create();
+        $id = $factoryProject->id;
+
+        // Act
+        $responseProject = $this->actingAs($this->user)->from('projects')->put(route('projects.toggle', ['id' => $id]));
+        // Another test to make sure that the project is visible on home page
+        $responseHomePage = $this->get(route('home'));
+
+        // Assert
+        $responseProject->assertRedirect(route('projects'));
+        // Another test to make sure that the project is visible on home page
+        $responseHomePage->assertSee($factoryProject['name']);
+        
+    }
+
+
 }

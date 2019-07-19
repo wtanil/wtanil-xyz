@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Services\CreateProjectService;
 use App\Services\ProjectQueryService;
+use App\Services\ProjectVisibilityService;
 
 class ProjectController extends Controller
 {
@@ -18,6 +19,7 @@ class ProjectController extends Controller
      */
     protected $createProjectService;
     protected $projectQueryService;
+    protected $projectVisibilityService;
 
     /**
      * Create a new controller instance.
@@ -27,12 +29,14 @@ class ProjectController extends Controller
      */
     public function __construct(
         CreateProjectService $createProjectService,
-        ProjectQueryService $projectQueryService
+        ProjectQueryService $projectQueryService,
+        ProjectVisibilityService $projectVisibilityService
     )
     {
 
         $this->createProjectService = $createProjectService;
         $this->projectQueryService = $projectQueryService;
+        $this->projectVisibilityService = $projectVisibilityService;
 
         $this->middleware('auth');
     }
@@ -128,4 +132,19 @@ class ProjectController extends Controller
     {
         //
     }
+
+    /**
+     * Toggle the visibility of the resource
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function toggleVisibility($id)
+    {
+        
+        $this->projectVisibilityService->toggleVisibility($id);
+
+        return redirect()->route('projects');
+    }
+
 }
