@@ -182,7 +182,7 @@ class ProjectFeatureTest extends TestCase
         $id = $factoryProject->id;
 
         // Act
-        $response = $this->actingAs($this->user)->from('projects')->post(route('projects.toggle', ['id' => $id]));
+        $response = $this->actingAs($this->user)->from('projects')->put(route('projects.toggle', ['id' => $id]));
 
         // Assert
         $response->assertRedirect(route('projects'));
@@ -201,10 +201,15 @@ class ProjectFeatureTest extends TestCase
         $id = $factoryProject->id;
 
         // Act
-        $response = $this->actingAs($this->user)->from('projects')->post(route('projects.toggle', ['id' => $id]));
-
+        $response = $this->actingAs($this->user)->from('projects')->put(route('projects.toggle', ['id' => $id]));
         // Assert
         $response->assertRedirect(route('projects'));
+
+
+        // Another test to make sure that the project is not visible on index page
+        // Act
+        $response = $this->followingRedirects()->actingAs($this->user)->from('projects')->get(route('projects'));
+        // Assert
         $response->assertSee($factoryProject['name']);
 
     }
