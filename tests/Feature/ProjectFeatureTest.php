@@ -182,11 +182,14 @@ class ProjectFeatureTest extends TestCase
         $id = $factoryProject->id;
 
         // Act
-        $response = $this->actingAs($this->user)->from('projects')->put(route('projects.toggle', ['id' => $id]));
+        $responseProjectPage = $this->actingAs($this->user)->from('projects')->put(route('projects.toggle', ['id' => $id]));
+        // Another test to make sure that the project is hidden on home page
+        $responseHomePage = $this->get(route('home'));
 
         // Assert
-        $response->assertRedirect(route('projects'));
-        $response->assertDontSee($factoryProject['name']);
+        $responseProjectPage->assertRedirect(route('projects'));
+        // Another test to make sure that the project is hidden on home page
+        $responseHomePage->assertDontSee($factoryProject['name']);
 
     }
 
@@ -201,17 +204,15 @@ class ProjectFeatureTest extends TestCase
         $id = $factoryProject->id;
 
         // Act
-        $response = $this->actingAs($this->user)->from('projects')->put(route('projects.toggle', ['id' => $id]));
+        $responseProject = $this->actingAs($this->user)->from('projects')->put(route('projects.toggle', ['id' => $id]));
+        // Another test to make sure that the project is visible on home page
+        $responseHomePage = $this->get(route('home'));
+
         // Assert
-        $response->assertRedirect(route('projects'));
-
-
-        // Another test to make sure that the project is not visible on index page
-        // Act
-        $response = $this->followingRedirects()->actingAs($this->user)->from('projects')->get(route('projects'));
-        // Assert
-        $response->assertSee($factoryProject['name']);
-
+        $responseProject->assertRedirect(route('projects'));
+        // Another test to make sure that the project is visible on home page
+        $responseHomePage->assertSee($factoryProject['name']);
+        
     }
 
 
