@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use App\Tag;
+use App\Project;
 
-class DeleteTagService {
+class DeleteProjectService {
 
     /**
      *  Contructor
@@ -18,14 +18,14 @@ class DeleteTagService {
 
 
     /**
-     *  Delete a tag or tags
+     *  Delete a project or projects
      *
-     *  @param  int|[INT]   id or ids of tag(s)
+     *  @param  int|[INT]   id or ids of project(s)
      *  @return int         number of model deleted
      */
     public function delete($id) {
 
-        $count = Tag::destroy($id);
+        $count = Project::destroy($id);
 
         return $count;
     }

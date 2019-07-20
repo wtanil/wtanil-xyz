@@ -216,4 +216,46 @@ class ProjectFeatureTest extends TestCase
     }
 
 
+
+
+    /**
+     *  @test
+     *  @group FeatureProject
+     */
+    public function guest_can_not_delete_a_project()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create();
+        $id = $factoryProject->id;
+
+        // Act
+        $response = $this->delete(route('projects.destroy', ['id' => $id]));
+
+        // Assert
+        $response->assertRedirect(action('Auth\LoginController@showLoginForm'));
+        
+    }
+
+    /**
+     *  @test
+     *  @group FeatureProject
+     */
+    public function admin_can_delete_a_project()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create();
+        $id = $factoryProject->id;
+
+        // Act
+        $response = $this->actingAs($this->user)->delete(route('projects.destroy', ['id' => $id]));
+        $responseHomePage = $this->actingAs($this->user)->get(route('projects'));
+
+        // Assert
+        $response->assertRedirect(route('projects'));
+        $responseHomePage->assertDontSee($factoryProject['name']);
+        
+        $this->assertDatabaseMissing('projects', $factoryProject->toArray());
+    }
+
+
 }
