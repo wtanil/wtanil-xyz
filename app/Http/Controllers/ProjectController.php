@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Services\CreateProjectService;
 use App\Services\ProjectQueryService;
 use App\Services\ProjectVisibilityService;
+use App\Services\DeleteProjectService;
 
 class ProjectController extends Controller
 {
@@ -20,6 +21,7 @@ class ProjectController extends Controller
     protected $createProjectService;
     protected $projectQueryService;
     protected $projectVisibilityService;
+    protected $deleteProjectService;
 
     /**
      * Create a new controller instance.
@@ -30,13 +32,15 @@ class ProjectController extends Controller
     public function __construct(
         CreateProjectService $createProjectService,
         ProjectQueryService $projectQueryService,
-        ProjectVisibilityService $projectVisibilityService
+        ProjectVisibilityService $projectVisibilityService,
+        DeleteProjectService $deleteProjectService
     )
     {
 
         $this->createProjectService = $createProjectService;
         $this->projectQueryService = $projectQueryService;
         $this->projectVisibilityService = $projectVisibilityService;
+        $this->deleteProjectService = $deleteProjectService;
 
         $this->middleware('auth');
     }
@@ -130,7 +134,7 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-
+        $deleted = $this->deleteProjectService->delete($id);
 
         return redirect()->route('projects');
     }
