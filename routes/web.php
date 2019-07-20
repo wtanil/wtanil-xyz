@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/projects/create', 'ProjectController@create')->name('projects.create');
     Route::post('/projects', 'ProjectController@store')->name('projects.store');
     Route::put('/projects/{id}/toggle', 'ProjectController@toggleVisibility')->name('projects.toggle');
+    Route::delete('/projects/{id}', 'ProjectController@destroy')->name('projects.destroy');
 
 });
 
