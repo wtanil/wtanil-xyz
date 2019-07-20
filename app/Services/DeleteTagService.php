@@ -18,10 +18,10 @@ class DeleteTagService {
 
 
     /**
-     *  Create a tag
+     *  Delete a tag or tags
      *
-     *  @param  int     id of tag
-     *  @return int     number of model deleted
+     *  @param  int|[INT]   id or ids of tag(s)
+     *  @return int         number of model deleted
      */
     public function delete($id) {
 
