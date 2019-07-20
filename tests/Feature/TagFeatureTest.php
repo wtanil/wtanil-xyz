@@ -223,11 +223,11 @@ class TagFeatureTest extends TestCase
 
         // Act
         $response = $this->actingAs($this->user)->delete(route('tags.destroy', ['id' => $id]));
+        $responseHomePage = $this->actingAs($this->user)->get(route('tags'));
 
         // Assert
-        $response->assertDontSee($factoryTag['name']);
         $response->assertRedirect(route('tags'));
-        
+        $responseHomePage->assertDontSee($factoryTag['name']);
         $this->assertDatabaseMissing('tags', $factoryTag->toArray());
     }
 
