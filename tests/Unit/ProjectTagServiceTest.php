@@ -6,15 +6,44 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+use App\Project;
+use App\Services\ProjectTagService;
+
 class ProjectTagServiceTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function testExample()
+    use RefreshDatabase;
+
+    protected $projectTagService;
+
+    protected function setUp(): void
     {
-        $this->assertTrue(true);
+        parent::setUp();
+
+        $this->projectTagService = $this->app->make(ProjectTagService::class);
+
     }
+
+    /**
+     *  @test
+     *  @group UnitProjectTagService
+     */
+    public function attach_ValidProjectAndTag_TagIsAttached()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create();
+        $id = $factoryProject->id;
+        $factoryTags = factory(Tag::class, 5)->create();
+        $tagIds = $factoryTags->pluck('id');
+
+        // Act
+        $results = $this->projectTagService->attach($factoryProject->id, $tagIds);
+
+        // Assert
+        $this->assertCount(5, count($results['attached']));
+        $this->assertCount(5, $factoryProject->tags->count());
+
+
+    }
+
+
 }
