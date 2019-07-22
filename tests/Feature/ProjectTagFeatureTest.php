@@ -6,17 +6,76 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+use App\User;
+use App\Project;
+use App\Tag;
+
 class ProjectTagFeatureTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function testExample()
-    {
-        $response = $this->get('/');
+    use RefreshDatabase;
 
-        $response->assertStatus(200);
+    protected $user;
+
+    protected function setUp(): void
+    {
+
+        parent::setUp();
+
+        $this->user = factory(User::class)->create();
+
+        // $this->withoutExceptionHandling();
+
+    }
+
+    /**
+     *  @test
+     *  @group FeatureProjectTag
+     */
+    public function guest_can_not_attach_tag_to_project()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create([
+            'hidden' => false
+        ]);
+        $id = $factoryProject->id;
+        $factoryTags = factory(Tag::class, 5)->create();
+        $tagIds = $factoryTags->pluck('id');
+
+        // Act
+        $response = $this->post(route('projecttag.attach', ['id' => $id]), $tagIds->toArray());
+
+        // Assert
+        $response->assertRedirect(action('Auth\LoginController@showLoginForm'));
+        
+    }
+
+
+
+    /**
+     *  @test
+     *  @group FeatureTagProject
+     */
+    public function admin_can_attach_tag_to_project()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create([
+            'hidden' => false
+        ]);
+        $id = $factoryProject->id;
+        $factoryTags = factory(Tag::class, 5)->create();
+        $tagIds = $factoryTags->pluck('id');
+
+        // Act
+        $response = $this->actingAs($this->user)->post(route('projecttag.attach', ['id' => $id]), $tagIds->toArray());
+        $responseHomePage = $this->get(route('projects'));
+
+        // Assert
+        $responseProject->assertRedirect(route('projects'));
+        // Another test to make sure that the project is visible on home page
+        foreach ($factoryTags as $factoryTag)
+        {
+            $responseHomePage->assertSee($factoryTag['name']);
+        }
+
     }
 }
