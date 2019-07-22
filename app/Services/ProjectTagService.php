@@ -23,11 +23,12 @@ class ProjectTagService {
      *  @param  [int]   ids ot tags
      *  @return []      array of 'attached', 'detached', 'changed'
      */
-    public function attach($id) {
+    public function attach($id, $tagIds) {
 
-        // $project = Project::find($id);
-        // $project->hidden = !$project->hidden;
-        // return $project->save();
+        $project = Project::find($id);
+        $changes = $project->tags()->sync($tagIds);
+        
+        return $changes;
 
     }
 

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Project;
+use App\Tag;
 use App\Services\ProjectTagService;
 
 class ProjectTagServiceTest extends TestCase
