@@ -13,6 +13,7 @@
                 <th scope="col">Visibility</th>
                 <th scope="col">Start Date</th>
                 <th scope="col">Last Update Date</th>
+                <th scopt="col">Tags</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -43,6 +44,16 @@
                 </td>
                 <td>
                     {{ $project->last_update_date }}
+                </td>
+                <td>
+                    
+                    @if ($project->tags != null)
+                        @foreach ($project->tags as $tag)
+                            {{ $tag->name }}, 
+                        @endforeach
+                    @endif
+                    
+                    TAGS
                 </td>
                 <td>
                     <form action="/projects/{{ $project->id }}/toggle" method="POST">
