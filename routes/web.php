@@ -43,6 +43,9 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-// ROUTES FOR REPOSITORY
+// ROUTES FOR HOME
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index');
+
+// Routes 
+Route::post('/projects/{id}/tags', 'ProjectTagController@attach')->name('projecttag.attach');
