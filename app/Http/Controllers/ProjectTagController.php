@@ -15,7 +15,7 @@ class ProjectTagController extends Controller
      */
     public function attach(Request $request)
     {
-        
+        return redirect()->route('projects');
     }
 
     
