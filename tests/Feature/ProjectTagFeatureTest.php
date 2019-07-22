@@ -70,7 +70,7 @@ class ProjectTagFeatureTest extends TestCase
         $responseHomePage = $this->get(route('projects'));
 
         // Assert
-        $responseProject->assertRedirect(route('projects'));
+        $response->assertRedirect(route('projects'));
         // Another test to make sure that the project is visible on home page
         foreach ($factoryTags as $factoryTag)
         {
