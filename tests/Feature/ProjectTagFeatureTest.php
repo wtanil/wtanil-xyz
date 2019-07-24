@@ -66,7 +66,9 @@ class ProjectTagFeatureTest extends TestCase
         $tagIds = $factoryTags->pluck('id');
 
         // Act
-        $response = $this->actingAs($this->user)->post(route('projecttag.attach', ['id' => $id]), $tagIds->toArray());
+        $response = $this->actingAs($this->user)->post(
+            route('projecttag.attach', ['id' => $id]), $tagIds->toArray()
+        );
         $responseHomePage = $this->get(route('projects'));
 
         // Assert
