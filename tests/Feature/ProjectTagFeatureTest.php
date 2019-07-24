@@ -67,7 +67,7 @@ class ProjectTagFeatureTest extends TestCase
 
         // Act
         $response = $this->actingAs($this->user)->post(
-            route('projecttag.attach', ['id' => $id]), $tagIds->toArray()
+            route('projecttag.attach', ['id' => $id]), ['tagIds' => $tagIds->toArray()]
         );
         $responseHomePage = $this->get(route('projects'));
 

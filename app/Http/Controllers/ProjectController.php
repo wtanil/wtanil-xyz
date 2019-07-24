@@ -55,6 +55,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = $this->projectQueryService->getAll();
+        // dd($projects);
         
         return view('projects.index')->with('projects', $projects);
     }

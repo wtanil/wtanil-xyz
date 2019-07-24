@@ -46,7 +46,6 @@
                     {{ $project->last_update_date }}
                 </td>
                 <td>
-                    
                     @if ($project->tags != null)
                         @foreach ($project->tags as $tag)
                             {{ $tag->name }}, 

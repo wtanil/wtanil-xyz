@@ -41,8 +41,7 @@ class ProjectTagController extends Controller
      */
     public function attach($id, Request $request)
     {
-
-        $this->projectTagService->attach($id, $request->input['tagIds']);
+        $changes = $this->projectTagService->attach($id, $request->input('tagIds'));
 
         return redirect()->route('projects');
     }
