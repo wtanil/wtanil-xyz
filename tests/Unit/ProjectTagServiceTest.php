@@ -40,8 +40,8 @@ class ProjectTagServiceTest extends TestCase
         $results = $this->projectTagService->attach($factoryProject->id, $tagIds);
 
         // Assert
-        $this->assertCount(5, count($results['attached']));
-        $this->assertCount(5, $factoryProject->tags->count());
+        $this->assertCount(5, $results['attached']);
+        $this->assertCount(5, $factoryProject->tags);
 
 
     }
