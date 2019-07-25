@@ -46,5 +46,27 @@ class ProjectTagServiceTest extends TestCase
 
     }
 
+    /**
+     *  @test
+     *  @group UnitProjectTagService
+     */
+    public function detach_ValidProjectAndTag_TagIsDetached()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create();
+        $factoryTags = factory(Tag::class, 5)->create();
+        $id = $factoryProject->id;
+        $tagIds = $factoryTags->pluck('id');
+        $factoryProject->tags()->sync($tagIds);
+
+        // Act
+        $results = $this->projectTagService->attach($factoryProject->id, []);
+        // Assert
+        $this->assertCount(5, $results['detached']);
+        $this->assertCount(0, $factoryProject->tags);
+
+
+    }
+
 
 }
