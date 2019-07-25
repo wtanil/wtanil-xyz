@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Project;
+use App\Tag;
 use App\Services\ProjectQueryService;
 
 class ProjectQueryServiceTest extends TestCase
@@ -93,6 +94,28 @@ class ProjectQueryServiceTest extends TestCase
         $this->assertCount(3, $projects);
         
     }
+
+
+    /**
+     *  @test
+     *  @group UnitProjectQueryService
+     */
+    public function forId_Valid_ReturnProject()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create();
+        $factoryTag = factory(Tag::class, 5)->create();
+        $id = $factoryProject->id;
+        $tagIds = $factoryTags->pluck('id');
+        $factoryProject->tags()->sync($tagIds);
+
+        // Act
+        $project = $this->projectTagService->forId($id);
+
+        // Assert
+        $this->assertEquals($factoryProject->name, $project->name);
+
+ }
 
 
 
