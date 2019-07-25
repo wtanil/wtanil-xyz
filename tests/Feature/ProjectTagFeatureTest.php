@@ -53,7 +53,7 @@ class ProjectTagFeatureTest extends TestCase
 
     /**
      *  @test
-     *  @group FeatureTagProject
+     *  @group FeatureProjectTag
      */
     public function admin_can_attach_tag_to_project()
     {
@@ -80,4 +80,37 @@ class ProjectTagFeatureTest extends TestCase
         }
 
     }
+
+    /**
+     *  @test
+     *  @group FeatureProjectTag
+     */
+    public function guest_can_not_access_project_tag_page()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create();
+        // Act
+        $response = $this->get(route('projecttag.show', ['id' => $factoryProject->id]));
+        // Assert
+        $response->assertRedirect(action('Auth\LoginController@showLoginForm'));
+        
+    }
+
+    /**
+     *  @test
+     *  @group FeatureProjectTag
+     */
+    public function admin_can_access_project_tag_page()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create();
+        // Act
+        $response = $this->actingAs($this->user)->get(route('projecttag.show', ['id' => $factoryProject->id]));
+        // Assert
+        $response->assertStatus(200);
+        $response->assertViewIs('projecttags.create');
+        
+    }
+
+
 }
