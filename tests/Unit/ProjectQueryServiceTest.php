@@ -104,13 +104,13 @@ class ProjectQueryServiceTest extends TestCase
     {
         // Arrange
         $factoryProject = factory(Project::class)->create();
-        $factoryTag = factory(Tag::class, 5)->create();
+        $factoryTags = factory(Tag::class, 5)->create();
         $id = $factoryProject->id;
         $tagIds = $factoryTags->pluck('id');
         $factoryProject->tags()->sync($tagIds);
 
         // Act
-        $project = $this->projectTagService->forId($id);
+        $project = $this->projectQueryService->forId($id);
 
         // Assert
         $this->assertEquals($factoryProject->name, $project->name);
