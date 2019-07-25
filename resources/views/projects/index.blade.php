@@ -49,7 +49,7 @@
                 <td>
                     @if ($project->tags != null)
                         @foreach ($project->tags as $tag)
-                            {{ $tag->name }}, 
+                            <a href="/"><span class="badge badge-pill badge-info">{{ $tag->name }}</span></a>, 
                         @endforeach
                     @endif
                     
