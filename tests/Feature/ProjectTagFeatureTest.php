@@ -112,5 +112,35 @@ class ProjectTagFeatureTest extends TestCase
         
     }
 
+    /**
+     *  @test
+     *  @group FeatureProjectTag
+     */
+    public function admin_can_detach_tag_from_project()
+    {
+        // Arrange
+
+        $factoryProject = factory(Project::class)->create();
+        $factoryTags = factory(Tag::class, 5)->create();
+        $id = $factoryProject->id;
+        $tagIds = $factoryTags->pluck('id');
+        $factoryProject->tags()->sync($tagIds);
+
+        // Act
+        $response = $this->actingAs($this->user)->post(
+            route('projecttag.attach', ['id' => $id]), ['tagIds' => []]
+        );
+        $responseHomePage = $this->get(route('projects'));
+
+        // Assert
+        $response->assertRedirect(route('projects'));
+        // Another test to make sure that the project is visible on home page
+        foreach ($factoryTags as $factoryTag)
+        {
+            $responseHomePage->assertDontSee($factoryTag['name']);
+        }
+
+    }
+
 
 }
