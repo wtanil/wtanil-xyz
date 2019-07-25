@@ -64,9 +64,13 @@ class ProjectTagController extends Controller
     {
 
         $project = $this->projectQueryService->forId($id);
+        $projectTagIds = $project->tags->pluck('id');
         $tags = $this->tagQueryService->getAll();
 
-        return view('projecttag.show', ['project' => $project, 'tags' => $tags]);
+        // dd($projectTagIds);
+
+        return view('projecttag.show')->with('project', $project)->with('projectTagIds', $projectTagIds)->with('tags', $tags);
+
     }
 
     
