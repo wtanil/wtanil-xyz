@@ -15,6 +15,7 @@
                 <th scope="col">Last Update Date</th>
                 <th scopt="col">Tags</th>
                 <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -53,6 +54,9 @@
                     @endif
                     
                     TAGS
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="{{ route('projecttag.show', ['id' => $project->id]) }}" >Edit tag</a>
                 </td>
                 <td>
                     <form action="/projects/{{ $project->id }}/toggle" method="POST">
