@@ -26,7 +26,7 @@ class ProjectQueryService {
     public function getAll()
     {
 
-        return Project::orderBy('start_date', 'desc')->get();
+        return Project::orderBy('start_date', 'desc')->with('tags')->get();
 
     }
 
@@ -40,6 +40,18 @@ class ProjectQueryService {
     {
 
         return Project::where('hidden', false)->orderBy('start_date', 'desc')->get();
+    }
+
+    /**
+     *  Get project by ID
+     *
+     *  @param  int ID
+     *  @return Model 
+     */
+    public function forId($id)
+    {
+
+        return Project::with('tags')->find($id);
     }
 
 
