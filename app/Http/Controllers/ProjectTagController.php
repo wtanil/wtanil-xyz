@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Services\ProjectTagService;
 use App\Services\ProjectQueryService;
+use App\Services\TagQueryService;
 
 class ProjectTagController extends Controller
 {
@@ -17,6 +18,7 @@ class ProjectTagController extends Controller
      */
     protected $projectTagService;
     protected $projectQueryService;
+    protected $tagQueryService;
 
     /**
      * Create a new controller instance.
@@ -26,12 +28,14 @@ class ProjectTagController extends Controller
      */
     public function __construct(
         ProjectTagService $projectTagService,
-        ProjectQueryService $projectQueryService
+        ProjectQueryService $projectQueryService,
+        TagQueryService $tagQueryService
     )
     {
 
         $this->projectTagService = $projectTagService;
         $this->projectQueryService = $projectQueryService;
+        $this->tagQueryService = $tagQueryService;
     
         $this->middleware('auth');
     }
@@ -60,8 +64,9 @@ class ProjectTagController extends Controller
     {
 
         $project = $this->projectQueryService->forId($id);
+        $tags = $this->tagQueryService->getAll();
 
-        return view('projecttag.show')->with($project);
+        return view('projecttag.show', ['project' => $project, 'tags' => $tags]);
     }
 
     

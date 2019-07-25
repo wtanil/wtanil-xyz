@@ -108,7 +108,7 @@ class ProjectTagFeatureTest extends TestCase
         $response = $this->actingAs($this->user)->get(route('projecttag.show', ['id' => $factoryProject->id]));
         // Assert
         $response->assertStatus(200);
-        $response->assertViewIs('projecttags.create');
+        $response->assertViewIs('projecttag.show');
         
     }
 
