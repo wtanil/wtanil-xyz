@@ -50,4 +50,5 @@ Route::get('/home', 'HomeController@index');
 // Routes 
 Route::middleware(['auth'])->group(function () {
     Route::post('/projects/{id}/tags', 'ProjectTagController@attach')->name('projecttag.attach');
+    Route::get('/projects/{id}/tags', 'ProjectTagController@show')->name('projecttag.show');
 });
