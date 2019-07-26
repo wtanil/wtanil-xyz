@@ -37,4 +37,15 @@ class HomeController extends Controller
 
         return view('homes.index')->with('projects', $projects);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Project  $project
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('homes.index')->with('project', $project);
+    }
 }
