@@ -13,6 +13,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Start Date</th>
                 <th scope="col">Last Update Date</th>
+                <th scope="col">Tags</th>
             </tr>
         </thead>
         <tbody>
@@ -31,6 +32,13 @@
                 </td>
                 <td>
                     {{ $project->last_update_date }}
+                </td>
+                <td>
+                    @if ($project->tags != null)
+                        @foreach ($project->tags as $tag)
+                            <a href="/"><span class="badge badge-pill badge-info">{{ $tag->name }}</span></a>
+                        @endforeach
+                    @endif
                 </td>
                 
             </tr>
