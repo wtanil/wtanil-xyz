@@ -141,7 +141,7 @@ class HomeFeatureTest extends TestCase
         $id = $factoryProject->id;
 
         // Act
-        $response = $this->get(route('home.show'), ['id' => $id]);
+        $response = $this->get(route('home.show', ['id' => $id]));
 
         // Assert
         $response->assertStatus(200);
