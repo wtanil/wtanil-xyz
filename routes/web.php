@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function () {
 // ROUTES FOR HOME
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index');
+Route::get('/portfolio/projects/{id}', 'HomeController@show')->name('home.show');
 
 // Routes 
 Route::middleware(['auth'])->group(function () {

@@ -37,4 +37,16 @@ class HomeController extends Controller
 
         return view('homes.index')->with('projects', $projects);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Project  $project
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $project = $this->projectQueryService->forId($id);
+        return view('homes.show')->with('project', $project);
+    }
 }

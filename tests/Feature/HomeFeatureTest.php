@@ -104,7 +104,7 @@ class HomeFeatureTest extends TestCase
      *  @test
      *  @group FeatureHome
      */
-    public function guest_can__see_project_tags()
+    public function guest_can_see_project_tags()
     {
         // Arrange
         $factoryProject = factory(Project::class)->create(
@@ -125,6 +125,27 @@ class HomeFeatureTest extends TestCase
         {
             $response->assertSee($factoryTag['name']);
         }
+
+    }
+
+    /**
+     *  @test
+     *  @group FeatureHome
+     */
+    public function guest_can_see_project_detail_page()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create(
+            ['hidden' => false]
+        );
+        $id = $factoryProject->id;
+
+        // Act
+        $response = $this->get(route('home.show', ['id' => $id]));
+
+        // Assert
+        $response->assertStatus(200);
+        $response->assertViewIs('homes.show');
 
     }
 
