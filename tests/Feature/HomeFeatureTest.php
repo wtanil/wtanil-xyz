@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\User;
 use App\Project;
+use App\Tag;
 
 class HomeFeatureTest extends TestCase
 {
@@ -98,4 +99,34 @@ class HomeFeatureTest extends TestCase
         }
 
     }
+
+    /**
+     *  @test
+     *  @group FeatureHome
+     */
+    public function guest_can__see_project_tags()
+    {
+        // Arrange
+        $factoryProject = factory(Project::class)->create(
+            ['hidden' => false]
+        );
+
+        $factoryTags = factory(Tag::class, 5)->create();
+        $id = $factoryProject->id;
+        $tagIds = $factoryTags->pluck('id');
+        $factoryProject->tags()->sync($tagIds);
+
+        // Act
+        $response = $this->get(route('home'));
+
+        // Assert
+
+        foreach ($factoryTags as $factoryTag)
+        {
+            $response->assertSee($factoryTag['name']);
+        }
+
+    }
+
+
 }
