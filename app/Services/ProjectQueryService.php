@@ -39,7 +39,7 @@ class ProjectQueryService {
     public function forPublic()
     {
 
-        return Project::where('hidden', false)->orderBy('start_date', 'desc')->get();
+        return Project::with('tags')->where('hidden', false)->orderBy('start_date', 'desc')->get();
     }
 
     /**
