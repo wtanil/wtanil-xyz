@@ -46,6 +46,7 @@ class HomeController extends Controller
      */
     public function show($id)
     {
+        $project = $this->projectQueryService->forId($id);
         return view('homes.index')->with('project', $project);
     }
 }
