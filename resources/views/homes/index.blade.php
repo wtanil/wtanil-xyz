@@ -28,10 +28,10 @@
                     {{ $project->name }}
                 </td>
                 <td>
-                    {{ $project->start_date }}
+                    {{ \Carbon\Carbon::parse($project->start_date)->format('F Y') }}
                 </td>
                 <td>
-                    {{ $project->last_update_date }}
+                    {{ \Carbon\Carbon::parse($project->last_update_date)->format('F Y') }}
                 </td>
                 <td>
                     @if ($project->tags != null)

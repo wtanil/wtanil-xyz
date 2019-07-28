@@ -15,8 +15,8 @@
     </div>
 
     <div class="row">
-        <div class="col">Project Date: {{ $project->start_date }}</div>
-        <div class="col">Last Maintenance Date: {{ $project->last_update_date }}</div>
+        <div class="col">Project Date: {{ \Carbon\Carbon::parse($project->start_date)->format('F Y') }}</div>
+        <div class="col">Last Maintenance Date: {{ \Carbon\Carbon::parse($project->last_update_date)->format('F Y') }}</div>
 
     </div>
 
