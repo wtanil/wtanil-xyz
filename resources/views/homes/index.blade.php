@@ -4,7 +4,32 @@
 
 <div class="container">
 
-    INDEX
+    @if ($projects->isNotEmpty())
+    @foreach ($projects as $project)
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $project->name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">@if ($project->tags != null)
+                        @foreach ($project->tags as $tag)
+                        <a href="/"><span class="badge badge-pill badge-info">{{ $tag->name }}</span></a>
+                        @endforeach
+                    @endif</h6>
+                    <p class="card-text">{{ $project->description }}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @endforeach
+    @endif
+
+
+<!-- <div class="row">
+
 
     <table class="table table-stripped table-bordered">
         <thead>
@@ -35,12 +60,12 @@
                 </td>
                 <td>
                     @if ($project->tags != null)
-                        @foreach ($project->tags as $tag)
-                            <a href="/"><span class="badge badge-pill badge-info">{{ $tag->name }}</span></a>
-                        @endforeach
+                    @foreach ($project->tags as $tag)
+                    <a href="/"><span class="badge badge-pill badge-info">{{ $tag->name }}</span></a>
+                    @endforeach
                     @endif
                 </td>
-                
+
             </tr>
 
             @endforeach
@@ -48,6 +73,7 @@
 
         </tbody>
     </table>
+</div> -->
 
 </div>
 
