@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
                 <div class="navbar-brand">
-                    William's Portfolio
+                    {{ config('app.name', 'William') }}
                 </div>
             </div>
         </nav>

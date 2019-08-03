@@ -15,17 +15,13 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Tag::class, function (Faker $faker) {
     return [
-        'name' => $faker->sentence,
+        'name' => $faker->word,
         'priority' => $faker->numberBetween(1, 10),
         'color' => $faker->randomElement([
-            'FFFFFF',
-            '000000',
-            'FF0000',
-            '00FF00',
-            '0000FF',
-            'FFFF00',
-            '00FFFF',
-            'FF00FF'
+            'f0f0f0',
+            'b9936c',
+            'dac292',
+            'e6e2d3'
         ])
     ];
 });
