@@ -134,7 +134,7 @@ class ProjectTagFeatureTest extends TestCase
 
         // Assert
         $response->assertRedirect(route('projects'));
-        // Another test to make sure that the project is visible on home page
+        // Another test to make sure that the project is removed on home page
         foreach ($factoryTags as $factoryTag)
         {
             $responseHomePage->assertDontSee($factoryTag['name']);

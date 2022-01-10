@@ -15,7 +15,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Tag::class, function (Faker $faker) {
     return [
-        'name' => $faker->word,
+        'name' => $faker->city,
         'priority' => $faker->numberBetween(1, 10),
         'color' => $faker->randomElement([
             'f0f0f0',
