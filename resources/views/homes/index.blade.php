@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <h5 class="card-title font-weight-bold">{{ $project->name }}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">@if ($project->tags != null)
-                        @foreach ($project->tags as $tag)
+                        @foreach ($project->tags->sortBy('priority') as $tag)
                         <span class="badge badge-pill text-dark font-weight-light" style="background-color:#{{ $tag->color }};">{{ $tag->name }}</span>
                         @endforeach
                     @endif</h6>

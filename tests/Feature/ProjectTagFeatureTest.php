@@ -73,7 +73,9 @@ class ProjectTagFeatureTest extends TestCase
 
         // Assert
         $response->assertRedirect(route('projects'));
-        // Another test to make sure that the project is visible on home page
+        // Another test to make sure that the tag is visible on home page
+        // WARNING: if the project contains detail that is same as tag name, it will pass, even if the attaching process is failed. For example, if a project is named "Blue" and if a attached tag is also named "Blue" this test will failed, it shouldn't since the "Blue" is the project name, not the tag
+        // This is a bad test. Need future improvement, but no immediate effect since the environment of the test is setup in a way that the scenario will not happen
         foreach ($factoryTags as $factoryTag)
         {
             $responseHomePage->assertSee($factoryTag['name']);
@@ -134,7 +136,9 @@ class ProjectTagFeatureTest extends TestCase
 
         // Assert
         $response->assertRedirect(route('projects'));
-        // Another test to make sure that the project is removed on home page
+        // Another test to make sure that the tag is removed on home page
+        // WARNING: if the project contains detail that is same as tag name, it will fail, where it shouldn't. For example, if a project is named "Blue" and if a detached tag is also named "Blue" this test will failed, it shouldn't since the "Blue" is the project name, not the tag
+        // This is a bad test. Need future improvement, but no immediate effect since the environment of the test is setup in a way that the scenario will not happen
         foreach ($factoryTags as $factoryTag)
         {
             $responseHomePage->assertDontSee($factoryTag['name']);

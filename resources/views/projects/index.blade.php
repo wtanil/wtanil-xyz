@@ -48,12 +48,11 @@
                 </td>
                 <td>
                     @if ($project->tags != null)
-                        @foreach ($project->tags as $tag)
-                            <a href="/"><span class="badge badge-pill badge-info">{{ $tag->name }}</span></a>, 
+                        @foreach ($project->tags->sortBy('priority') as $tag)
+                            <span class="badge badge-pill text-dark font-weight-light" style="background-color:#{{ $tag->color }};">{{ $tag->name }}</span>
                         @endforeach
                     @endif
                     
-                    TAGS
                 </td>
                 <td>
                     <a class="btn btn-primary" href="{{ route('projecttag.show', ['id' => $project->id]) }}" >Edit tag</a>
