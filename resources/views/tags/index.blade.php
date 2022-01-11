@@ -3,8 +3,6 @@
 @section('content')
 <div class="container">
 
-    INDEX
-
     @if (isset($deleteCount))
     <div class="row">
         <div class="alert alert-success" role="alert">

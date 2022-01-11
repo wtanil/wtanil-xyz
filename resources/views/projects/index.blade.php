@@ -16,6 +16,7 @@
                 <th scopt="col">Tags</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -77,7 +78,16 @@
                         </button>
                     </form>
                 </td>
-                
+                <td>
+                <form action="/projects/{{ $project->id }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <!-- Delete button -->
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa fa-plus"></i>X
+                        </button>
+                    </form>
+                </td>
             </tr>
 
             @endforeach
