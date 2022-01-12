@@ -47,6 +47,9 @@ class HomeController extends Controller
     public function show($id)
     {
         $project = $this->projectQueryService->forId($id);
+        if ($project == null) {
+            return redirect()->route('home');
+        }
         return view('homes.show')->with('project', $project);
     }
 }
