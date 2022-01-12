@@ -23,9 +23,9 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
-                <div class="navbar-brand">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'William') }}
-                </div>
+                </a>
             </div>
         </nav>
 
