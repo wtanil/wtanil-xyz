@@ -20,4 +20,13 @@ class Project extends Model
     {
         return $this->morphToMany('App\Tag', 'taggable');
     }
+
+    /**
+     * Get the images for the project
+    */
+    public function images() {
+
+        return $this->hasMany('App\Image', 'project_id', 'id');
+
+    }
 }
