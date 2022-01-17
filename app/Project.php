@@ -29,4 +29,15 @@ class Project extends Model
         return $this->hasMany('App\Image', 'project_id', 'id');
 
     }
+
+    /**
+     * Get the thumbnail for the project
+    */
+    public function thumbnail() {
+
+        // return $this->belongsTo('App\Image', 'thumbnail_id', 'id');
+
+        return $this->hasOne('App\Image', 'id', 'thumbnail_id');
+
+    }
 }
