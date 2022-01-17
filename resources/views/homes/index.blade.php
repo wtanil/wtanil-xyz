@@ -20,11 +20,13 @@
                     <h5 class="card-title font-weight-bold"><a href="{{ route('home.show', ['id' => $project->id]) }}" >{{ $project->name }}</a></h5>
                     
                     <div class="row">
-                        <div class="col-1">
-                            <a href="{{ route('home.show', ['id' => $project->id]) }}"><img class="rounded center-block img-thumb-small" src="{{$project->thumbnail->low_res_url}}"></a>
+                        <div class="col-2 col-md-1">
+                            <div class="img-thumb-small-container">
+                            <a href="{{ route('home.show', ['id' => $project->id]) }}"><img class="rounded img-thumb-small-a" src="{{$project->thumbnail->low_res_url}}"></a>
+                            </div>
                         </div>
 
-                        <div class="col-11">
+                        <div class="col-10 col-md-11">
                             <h6 class="card-subtitle mb-2 text-muted">@if ($project->tags != null)
                                 @foreach ($project->tags->sortBy('priority') as $tag)
                                 <span class="badge badge-pill text-dark font-weight-light" style="background-color:#{{ $tag->color }};">{{ $tag->name }}</span>
