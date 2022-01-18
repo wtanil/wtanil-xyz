@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="col-2 col-md-1">
                             <div class="img-thumb-small-container">
-                            <a href="{{ route('home.show', ['id' => $project->id]) }}"><img class="rounded img-thumb-small-a" src="{{$project->thumbnail->low_res_url}}"></a>
+                            <a href="{{ route('home.show', ['id' => $project->id]) }}"><img class="rounded img-fluid" src="{{$project->thumbnail->low_res_url}}"></a>
                             </div>
                         </div>
 

@@ -51,7 +51,7 @@ class ProjectQueryService {
     public function forId($id)
     {
 
-        return Project::with('tags')->find($id);
+        return Project::with(['tags', 'images'])->find($id);
     }
 
 
