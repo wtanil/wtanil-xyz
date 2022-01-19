@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Project extends Model
 {
@@ -39,5 +40,12 @@ class Project extends Model
 
         return $this->hasOne('App\Image', 'id', 'thumbnail_id');
 
+    }
+
+    /**
+    * Get the short description for the project
+    */
+    public function getShortDescription() {
+        return Str::limit($this->description, 150, '...');
     }
 }

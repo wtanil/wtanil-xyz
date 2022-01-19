@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="col-2 col-md-1">
                             <div class="img-thumb-small-container">
-                            <a href="{{ route('home.show', ['id' => $project->id]) }}"><img class="rounded img-fluid" src="{{$project->thumbnail->low_res_url}}"></a>
+                            <a href="{{ route('home.show', ['id' => $project->id]) }}"><img class="rounded img-fluid img-thumbnail" src="{{$project->thumbnail->low_res_url}}"></a>
                             </div>
                         </div>
 
@@ -32,7 +32,7 @@
                                 <span class="badge badge-pill text-dark font-weight-light" style="background-color:#{{ $tag->color }};">{{ $tag->name }}</span>
                                 @endforeach
                             @endif</h6>
-                            <p class="card-text">{{ $project->description }}</p>
+                            <p class="card-text">{!! nl2br(e($project->getShortdescription())) !!} <a href="{{ route('home.show', ['id' => $project->id]) }}">more</a></p>
                         </div>
                         
                     </div>

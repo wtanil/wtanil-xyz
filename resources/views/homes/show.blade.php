@@ -34,8 +34,8 @@
         @foreach ($project->images as $image)
 
         <div class="col-3 col-md-1">
-            <div class="img-thumb-medium-container mt-1">
-                <a href="{{ $image->high_res_url }}"><img class="rounded img-fluid" src="{{ $image->low_res_url }}"></a>
+            <div class="img-thumb-medium-container m-1">
+                <a href="{{ $image->high_res_url }}"><img class="rounded img-thumbnail img-fluid" src="{{ $image->low_res_url }}"></a>
             </div>
         </div>
 
@@ -46,7 +46,7 @@
 
     <div class="row">
         <div class="col">
-            {{ $project->description }}
+            {!! nl2br(e($project->description)) !!}
         </div>
     </div>
 
