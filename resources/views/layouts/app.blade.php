@@ -39,7 +39,7 @@
                                 Project
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="{{ route('projects') }}">Edit</a>
+                                <a class="dropdown-item" href="{{ route('projects') }}">Manage</a>
                                 <a class="dropdown-item" href="{{ route('projects.create') }}">Create</a>
                             </div>
                         </li>
@@ -49,7 +49,7 @@
                                 Tag
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="{{ route('tags') }}">Edit</a>
+                                <a class="dropdown-item" href="{{ route('tags') }}">Manage</a>
                                 <a class="dropdown-item" href="{{ route('tags.create') }}">Create</a>
                             </div>
                         </li>

@@ -27,12 +27,21 @@
                         </div>
 
                         <div class="col-10 col-md-11">
-                            <h6 class="card-subtitle mb-2 text-muted">@if ($project->tags != null)
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                @if ($project->tags != null)
                                 @foreach ($project->tags->sortBy('priority') as $tag)
-                                <span class="badge badge-pill text-dark font-weight-light" style="background-color:#{{ $tag->color }};">{{ $tag->name }}</span>
+                                    <span class="badge badge-pill text-dark font-weight-light" style="background-color:#{{ $tag->color }};">{{ $tag->name }}</span>
                                 @endforeach
-                            @endif</h6>
-                            <p class="card-text">{!! nl2br(e($project->getShortdescription())) !!} <a href="{{ route('home.show', ['id' => $project->id]) }}">more</a></p>
+                                @endif
+                            </h6>
+
+
+                            <p class="card-text">{!! nl2br(e($project->getShortdescription())) !!} 
+                                @if (strlen($project->description) > 150)
+                                <a href="{{ route('home.show', ['id' => $project->id]) }}">more</a>
+                                @endif
+                            </p>
+
                         </div>
                         
                     </div>
