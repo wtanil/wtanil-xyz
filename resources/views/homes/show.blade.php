@@ -49,7 +49,14 @@
             {!! nl2br(e($project->description)) !!}
         </div>
     </div>
-
+                            
+    @if ($project->privacy_policy != null)
+    <div class ="row">
+        <div class="col">
+            <a href="{{ route('home.showPrivacyPolicy', ['id' => $project->id]) }}">Privacy Policy</a>
+        </div>
+    </div>
+    @endif
 
 
 </div>

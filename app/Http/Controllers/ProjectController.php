@@ -105,6 +105,21 @@ class ProjectController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Project  $project
+     * @return \Illuminate\Http\Response
+     */
+    public function showPrivacyPolicy($id)
+    {
+        $project = $this->projectQueryService->forId($id);
+        if ($project == null) {
+            return redirect()->route('home');
+        }
+        return view('projects.privacypolicy')->with('project', $project);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Project  $project
