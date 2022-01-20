@@ -28,7 +28,16 @@
 
     </div>
 
-    <div class="row mt-3 mb-2">
+    @if ($project->links != null)
+    <div class="row mt-2">
+        <div class="col">
+            {!! html_entity_decode($project->links) !!}
+        </div>
+    </div>
+    
+    @endif
+
+    <div class="row mt-2 mb-2">
         <div class="col">
             {!! nl2br(e($project->description)) !!}
         </div>

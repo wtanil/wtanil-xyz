@@ -37,6 +37,10 @@
                                 @endif
                             </h6>
 
+                            @if ($project->links != null)
+                            {!! html_entity_decode($project->links) !!}
+                            @endif
+
 
                             <p class="card-text">{!! nl2br(e($project->getShortdescription())) !!} 
                                 @if (strlen($project->description) > 150)
