@@ -31,7 +31,7 @@
 
     <div class="row">
 
-        @foreach ($project->images as $image)
+        @foreach ($project->images->sortBy('priority') as $image)
 
         <div class="col-3 col-md-1">
             <div class="img-thumb-medium-container m-1">
