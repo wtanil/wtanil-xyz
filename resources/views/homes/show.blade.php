@@ -28,15 +28,27 @@
 
     </div>
 
+    <div class="row mt-3 mb-2">
+        <div class="col">
+            {!! nl2br(e($project->description)) !!}
+        </div>
+    </div>
+
 
     <div class="row">
 
         @foreach ($project->images->sortBy('priority') as $image)
 
         <div class="col-3 col-md-1">
-            <div class="img-thumb-medium-container m-1">
-                <a href="{{ $image->high_res_url }}"><img class="rounded img-thumbnail img-fluid" src="{{ $image->low_res_url }}"></a>
+            <div class="img-thumb-medium-container m-0">
+                <!-- <a href="{{ $image->high_res_url }}"><img class="rounded img-thumbnail img-fluid" src="{{ $image->low_res_url }}"></a> -->
+
+                <figure class="figure">
+                    <a href="{{ $image->high_res_url }}"><img class="rounded figure-img img-fluid" src="{{ $image->low_res_url }}"></a>
+                    <figcaption class="figure-caption">{{ $image->subtitle }}</figcaption>
+                </figure>
             </div>
+
         </div>
 
         @endforeach
@@ -44,16 +56,12 @@
     </div>
 
 
-    <div class="row">
-        <div class="col">
-            {!! nl2br(e($project->description)) !!}
-        </div>
-    </div>
+    
                             
     @if ($project->privacy_policy != null)
     <div class ="row">
         <div class="col">
-            <a href="{{ route('home.showPrivacyPolicy', ['id' => $project->id]) }}">Privacy Policy</a>
+            <a href="{{ route('home.showPrivacyPolicy', ['id' => $project->id]) }}"><span class="small">Privacy Policy</span></a>
         </div>
     </div>
     @endif
