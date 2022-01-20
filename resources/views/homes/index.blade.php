@@ -5,7 +5,9 @@
 <div class="container">
 
     <div class="row">
-        <h3 class="font-weight-bold">Projects</h3>
+        <div class="col">
+            <h3 class="font-weight-bold">Projects</h3>
+        </div>
     </div>
 
 
