@@ -33,6 +33,9 @@
 	rm -rf {{ $new_release_dir }}/storage
 	ln -nfs {{ $app_dir }}/storage {{ $new_release_dir }}/storage
 
+	echo "Linking storage directory to public"
+	ln -nfs {{ $app_dir }}/storage/app/public {{ $new_release_dir }}/public/storage
+
 	echo 'Linking .env file'
 	ln -nfs {{ $app_dir }}/.env {{ $new_release_dir }}/.env
 
