@@ -3,17 +3,18 @@
 @section('content')
 <div class="container">
 
-    INDEX
-
     <table class="table table-stripped table-bordered">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Visibility</th>
+                {{--
                 <th scope="col">Start Date</th>
+                --}}
                 <th scope="col">Last Update Date</th>
                 <th scopt="col">Tags</th>
+                <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
@@ -40,23 +41,24 @@
                     Visible
                 @endif
                 </td>
+                {{--
                 <td>
                     {{ $project->start_date }}
                 </td>
+                --}}
                 <td>
                     {{ $project->last_update_date }}
                 </td>
                 <td>
                     @if ($project->tags != null)
-                        @foreach ($project->tags as $tag)
-                            <a href="/"><span class="badge badge-pill badge-info">{{ $tag->name }}</span></a>, 
+                        @foreach ($project->tags->sortBy('priority') as $tag)
+                            <span class="badge badge-pill text-dark font-weight-light" style="background-color:#{{ $tag->color }};">{{ $tag->name }}</span>
                         @endforeach
                     @endif
                     
-                    TAGS
                 </td>
                 <td>
-                    <a class="btn btn-primary" href="{{ route('projecttag.show', ['id' => $project->id]) }}" >Edit tag</a>
+                    <a class="btn btn-primary btn-sm" href="{{ route('projecttag.show', ['id' => $project->id]) }}" >Edit tag</a>
                 </td>
                 <td>
                     <form action="/projects/{{ $project->id }}/toggle" method="POST">
@@ -68,6 +70,7 @@
                         @else
                          btn-primary
                         @endif
+                         btn-sm
                         ">
                             <i class="fa fa-plus"></i>
                             @if ($project->hidden == true)
@@ -78,7 +81,16 @@
                         </button>
                     </form>
                 </td>
-                
+                <td>
+                <form action="/projects/{{ $project->id }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <!-- Delete button -->
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="fa fa-plus"></i>X
+                        </button>
+                    </form>
+                </td>
             </tr>
 
             @endforeach

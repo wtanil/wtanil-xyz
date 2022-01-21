@@ -3,8 +3,6 @@
 @section('content')
 <div class="container">
 
-    INDEX
-
     @if (isset($deleteCount))
     <div class="row">
         <div class="alert alert-success" role="alert">
@@ -28,7 +26,7 @@
                 <th scope="col">Tags</th>
                 <th scope="col">Priority</th>
                 <th scope="col">Color</th>
-                <th scope="col">Delete</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -45,7 +43,7 @@
                 <td>
                     {{ $tag->priority }}
                 </td>
-                <td>
+                <td style="background-color: #{{ $tag->color }};">
                     {{ $tag->color }}
                 </td>
                 <td>
@@ -53,7 +51,7 @@
                         @csrf
                         @method('DELETE')
                         <!-- Add Category Button -->
-                        <button type="submit" class="btn btn-danger">
+                        <button type="submit" class="btn btn-danger btn-sm">
                             <i class="fa fa-plus"></i>X
                         </button>
                     </form>

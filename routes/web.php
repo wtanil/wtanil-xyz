@@ -15,7 +15,10 @@
 //     return view('welcome');
 // });
 
-Auth::routes(['register' => false]);
+Auth::routes([
+    'register' => false,
+    'reset' => false
+]);
 // Route::get('/home', 'HomeController@index')->name('home');
 
 
@@ -47,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index');
 Route::get('/portfolio/projects/{id}', 'HomeController@show')->name('home.show');
+Route::get('/portfolio/projects/{id}/privacypolicy', 'HomeController@showPrivacyPolicy')->name('home.showPrivacyPolicy');
 
 // Routes 
 Route::middleware(['auth'])->group(function () {

@@ -47,6 +47,25 @@ class HomeController extends Controller
     public function show($id)
     {
         $project = $this->projectQueryService->forId($id);
+        if ($project == null) {
+            return redirect()->route('home');
+        }
         return view('homes.show')->with('project', $project);
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Project  $project
+     * @return \Illuminate\Http\Response
+     */
+    public function showPrivacyPolicy($id)
+    {
+        $project = $this->projectQueryService->forId($id);
+        if ($project == null) {
+            return redirect()->route('home');
+        }
+        return view('homes.privacypolicy')->with('project', $project);
     }
 }

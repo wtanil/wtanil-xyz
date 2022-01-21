@@ -39,7 +39,7 @@ class ProjectQueryService {
     public function forPublic()
     {
 
-        return Project::with('tags')->where('hidden', false)->orderBy('start_date', 'desc')->get();
+        return Project::with(['tags', 'thumbnail'])->where('hidden', false)->orderBy('start_date', 'desc')->get();
     }
 
     /**
@@ -51,7 +51,7 @@ class ProjectQueryService {
     public function forId($id)
     {
 
-        return Project::with('tags')->find($id);
+        return Project::with(['tags', 'images'])->find($id);
     }
 
 

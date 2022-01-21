@@ -1,53 +1,71 @@
-@extends('layouts.app')
+@extends('layouts.portfolio')
 
 @section('content')
 
 <div class="container">
 
-    INDEX
+    <div class="row">
+        <div class="col">
+            <h3 class="font-weight-bold">Projects</h3>
+        </div>
+    </div>
 
-    <table class="table table-stripped table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Start Date</th>
-                <th scope="col">Last Update Date</th>
-                <th scope="col">Tags</th>
-            </tr>
-        </thead>
-        <tbody>
 
-            @if ($projects->isNotEmpty())
-            @foreach ($projects as $project)
+    @if ($projects->isNotEmpty())
+    @foreach ($projects as $project)
 
-            <tr>
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-0 border-0">
+                <div class="card-body">
 
-                <th scope="row">{{ $loop->iteration }}</th>
-                <td>
-                    {{ $project->name }}
-                </td>
-                <td>
-                    {{ \Carbon\Carbon::parse($project->start_date)->format('F Y') }}
-                </td>
-                <td>
-                    {{ \Carbon\Carbon::parse($project->last_update_date)->format('F Y') }}
-                </td>
-                <td>
-                    @if ($project->tags != null)
-                        @foreach ($project->tags as $tag)
-                            <a href="/"><span class="badge badge-pill badge-info">{{ $tag->name }}</span></a>
-                        @endforeach
-                    @endif
-                </td>
-                
-            </tr>
+                    <h5 class="card-title font-weight-bold"><a href="{{ route('home.show', ['id' => $project->id]) }}" >{{ $project->name }}</a></h5>
+                    
+                    <div class="row">
+                        @if ($project->thumbnail_id != null)
+                        <div class="col-2 col-md-1">
+                            <div class="img-thumb-small-container">
+                            <a href="{{ route('home.show', ['id' => $project->id]) }}"><img class="rounded img-fluid " src="{{$project->thumbnail->low_res_url}}"></a>
+                            </div>
+                        </div>
+                        @endif
 
-            @endforeach
-            @endif
+                        <div class="col-10 col-md-11">
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                @if ($project->tags != null)
+                                @foreach ($project->tags->sortBy('priority') as $tag)
+                                    <span class="badge badge-pill text-dark font-weight-light" style="background-color:#{{ $tag->color }};">{{ $tag->name }}</span>
+                                @endforeach
+                                @endif
+                            </h6>
 
-        </tbody>
-    </table>
+                            @if ($project->links != null)
+                            {!! html_entity_decode($project->links) !!}
+                            @endif
+
+
+                            <p class="card-text">{!! nl2br(e($project->getShortdescription())) !!} 
+                                @if (strlen($project->description) > 150)
+                                <a href="{{ route('home.show', ['id' => $project->id]) }}">more</a>
+                                @endif
+                            </p>
+
+                        </div>
+                        
+                    </div>
+
+                    
+                    
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @endforeach
+    @endif
+
 
 </div>
 
