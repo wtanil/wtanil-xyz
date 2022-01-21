@@ -22,11 +22,13 @@
                     <h5 class="card-title font-weight-bold"><a href="{{ route('home.show', ['id' => $project->id]) }}" >{{ $project->name }}</a></h5>
                     
                     <div class="row">
+                        @if ($project->thumbnail_id != null)
                         <div class="col-2 col-md-1">
                             <div class="img-thumb-small-container">
                             <a href="{{ route('home.show', ['id' => $project->id]) }}"><img class="rounded img-fluid " src="{{$project->thumbnail->low_res_url}}"></a>
                             </div>
                         </div>
+                        @endif
 
                         <div class="col-10 col-md-11">
                             <h6 class="card-subtitle mb-2 text-muted">
