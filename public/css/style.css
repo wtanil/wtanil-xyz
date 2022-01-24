@@ -37,9 +37,7 @@
     width: 100%
 }
 
-.download-badge {
-    max-width: 75px;
-    max-height: 75px;
-    min-width: 50px;
-    min-height: 50px;
+.link-badge {
+    max-height: 40px;
+    width: 75px;
 }
