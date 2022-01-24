@@ -31,17 +31,28 @@
                         @endif
 
                         <div class="col-10 col-md-11">
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                @if ($project->tags != null)
+                            @if ($project->tags != null)
+                            <h6 class="mb-2 text-muted">
                                 @foreach ($project->tags->sortBy('priority') as $tag)
                                     <span class="badge badge-pill text-dark font-weight-light" style="background-color:#{{ $tag->color }};">{{ $tag->name }}</span>
                                 @endforeach
-                                @endif
                             </h6>
+                            @endif
 
                             @if ($project->links != null)
+                            <div>
                             {!! html_entity_decode($project->links) !!}
+                            </div>
                             @endif
+                            
+                            {{--
+                                <span class="badge" style="background-color: ;">
+                                    <a href="https://dev.wtanil.xyz"><img src="https://www.wtanil.xyz/storage/asset/appstore-badge-black.svg" class="link-badge"></a>
+                                </span>
+                                <span class="badge" style="background-color: ;">
+                                    <a href="https://dev.wtanil.xyz"><img src="https://www.wtanil.xyz/storage/asset/gitlab-badge-withgraytext.svg" class="link-badge"></a>
+                                </span>
+                            --}}
 
 
                             <p class="card-text">{!! nl2br(e($project->getShortdescription())) !!} 
