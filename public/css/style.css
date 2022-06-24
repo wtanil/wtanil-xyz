@@ -41,3 +41,28 @@
     max-height: 40px;
     width: 75px;
 }
+
+body {
+  background-color: #222;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #DDDFDC;
+}
+
+p {
+  color: #DDDFDC;
+}
+
+.card {
+  background-color: transparent;
+}
+
+.bg-darkgreen {
+  background-color: #343f40 !important;
+}
