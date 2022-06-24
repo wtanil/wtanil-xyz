@@ -39,7 +39,7 @@
 
     <div class="row mt-2 mb-2">
         <div class="col">
-            {!! nl2br(e($project->description)) !!}
+            <p>{!! nl2br(e($project->description)) !!}</p>
         </div>
     </div>
 
