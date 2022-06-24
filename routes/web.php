@@ -16,7 +16,7 @@
 // });
 
 Auth::routes([
-    'register' => true,
+    'register' => false,
     'reset' => false
 ]);
 // Route::get('/home', 'HomeController@index')->name('home');
