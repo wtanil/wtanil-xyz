@@ -28,12 +28,29 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'William') }}
                 </a>
-            </div>
-        </nav>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+                <!-- asdf -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="https://gitlab.com/wtanil" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/gitlab-logo-700.svg" class="social-icon"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://github.com/wtanil" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/github-mark.svg" class="social-icon"></a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-4">
+        @yield('content')
+    </main>
+</div>
 </body>
 </html>
