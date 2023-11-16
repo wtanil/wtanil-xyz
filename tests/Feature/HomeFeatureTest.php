@@ -104,6 +104,7 @@ class HomeFeatureTest extends TestCase
      *  @test
      *  @group FeatureHome
      */
+    /* currently removing the test because tags feature are removed
     public function guest_can_see_project_tags()
     {
         // Arrange
@@ -127,6 +128,7 @@ class HomeFeatureTest extends TestCase
         }
 
     }
+    */
 
     /**
      *  @test

@@ -33,22 +33,26 @@
                 </button>
 
                 <!-- asdf -->
+                
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="https://gitlab.com/wtanil" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/gitlab-logo-700.svg" class="social-icon"></a>
+
+                            <a href="#profile-section" class="nav-link">About me</a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://github.com/wtanil" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/github-mark.svg" class="social-icon"></a>
+                            <a href="#project-section" class="nav-link">Projects</a>
                         </li>
 
                     </ul>
                 </div>
+                
+
             </div>
         </div>
     </nav>
 
-    <main class="py-4">
+    <main class="">
         @yield('content')
     </main>
 </div>
