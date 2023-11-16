@@ -67,12 +67,12 @@
         <div class="col-12">
             <h4>{{ $project->name }}</h4>
         </div>
-            <div class="col-4 text-center">
+            <div class="col-12 col-sm-4 text-center">
                 @if ($project->thumbnail_id != null)
                 <a href="{{$project->thumbnail->high_res_url}}" target="_blank"><img class="rounded img-project-thumb" src="{{ $project->thumbnail->low_res_url }}"></a>
                 @endif
             </div>
-            <div class="col-8">
+            <div class="col-12 col-sm-8">
                 <p>{!! nl2br(e($project->description)) !!} </p>
             </div>
     </div>
