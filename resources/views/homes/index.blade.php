@@ -56,7 +56,7 @@
 
     <div class="row padding-row" id="project-section">
         <div class="col">
-            <h3>Projects</h3>
+            <h2>Projects</h2>
         </div>
     </div>
 
@@ -64,88 +64,21 @@
     @if ($projects->isNotEmpty())
     @foreach ($projects as $project)
     <div class="row padding-card">
+        <div class="col-12">
+            <h4>{{ $project->name }}</h4>
+        </div>
             <div class="col-4 text-center">
                 @if ($project->thumbnail_id != null)
-                <a href="{{ route('home.show', ['id' => $project->id]) }}"><img class="rounded img-project-thumb" src="{{$project->thumbnail->low_res_url}}"></a>
+                <a href="{{$project->thumbnail->high_res_url}}" target="_blank"><img class="rounded img-project-thumb" src="{{ $project->thumbnail->low_res_url }}"></a>
                 @endif
             </div>
             <div class="col-8">
-                <h4>{{ $project->name }}</h4>
                 <p>{!! nl2br(e($project->description)) !!} </p>
             </div>
     </div>
 
     @endforeach
     @endif
-    
-
-
-{{--
-    @if ($projects->isNotEmpty())
-    @foreach ($projects as $project)
-
-    <div class="row">
-        <div class="col-12">
-            <div class="card my-0 border-0">
-                <div class="card-body">
-
-                    <h5 class="card-title font-weight-bold"><a href="{{ route('home.show', ['id' => $project->id]) }}" >{{ $project->name }}</a></h5>
-
-                    <div class="row">
-                        @if ($project->thumbnail_id != null)
-                        <div class="col-2 col-md-1">
-                            <div class="img-thumb-small-container">
-                                <a href="{{ route('home.show', ['id' => $project->id]) }}"><img class="rounded img-fluid " src="{{$project->thumbnail->low_res_url}}"></a>
-                            </div>
-                        </div>
-                        @endif
-
-                        <div class="col-10 col-md-11">
-                            @if ($project->tags != null)
-                            <h6 class="mb-2 text-muted">
-                                @foreach ($project->tags->sortBy('priority') as $tag)
-                                <span class="badge badge-pill text-dark font-weight-light" style="background-color:#{{ $tag->color }};">{{ $tag->name }}</span>
-                                @endforeach
-                            </h6>
-                            @endif
-
-                            @if ($project->links != null)
-                            <div>
-                                {!! html_entity_decode($project->links) !!}
-                            </div>
-                            @endif
-
-                            <!--
-                            <span class="badge" style="background-color: ;">
-                                <a href="https://dev.wtanil.xyz"><img src="https://www.wtanil.xyz/storage/asset/appstore-badge-black.svg" class="link-badge"></a>
-                            </span>
-                            <span class="badge" style="background-color: ;">
-                                <a href="https://dev.wtanil.xyz"><img src="https://www.wtanil.xyz/storage/asset/gitlab-badge-withgraytext.svg" class="link-badge"></a>
-                            </span>
-                        -->
-
-
-                            <p class="card-text">{!! nl2br(e($project->getShortdescription())) !!} 
-                                @if (strlen($project->description) > 150)
-                                <a href="{{ route('home.show', ['id' => $project->id]) }}">more</a>
-                                @endif
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-    --}}
-
-    {{--
-    @endforeach
-    @endif
-    --}}
 
     <row>
         <div class="col-12 text-center">
