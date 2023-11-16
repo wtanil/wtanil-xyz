@@ -37,13 +37,31 @@
     width: 100%
 }
 
+.img-main {
+/*  width: 100%;*/
+/*  height: auto;*/
+/*max-height: 200px;
+max-width: 200px;*/
+max-width: 100%;
+max-height: auto;
+}
+
+.padding-profile {
+    padding: 10px;
+}
+
+.padding-profile-social {
+    padding: 5px;
+}
+
 .link-badge {
     max-height: 40px;
     width: 75px;
 }
 
 body {
-  background-color: #222;
+/*  background-color: #222;*/
+background-color: #222;
   color: #91938F;
 }
 
@@ -53,7 +71,8 @@ h3,
 h4,
 h5,
 h6 {
-  color: #DDDFDC;
+/*  color: #DDDFDC;*/
+color: #FFF;
 }
 
 p {
@@ -64,14 +83,110 @@ p {
   background-color: transparent;
 }
 
+.bg-darkgrey{
+    background-color: #222;
+}
+
 .bg-darkgreen {
   background-color: #343f40 !important;
 }
 
+.bg-darkgreen2 {
+    background-color: #5c6566 !important;
+}
+
+.bg-darkgreen3 {
+    background-color: #999f9f !important;
+}
+
+.bg-darkgrey2 {
+    background-color: #e8e8e8 !important;
+}
+
+.bg-darktriadic2 {
+    background-color: #646464 !important;
+}
+
+.bg-darktriadic3 {
+    background-color: #40343f !important;
+}
+
 .social-icon {
+    max-height: 25px;
+    max-width: 25px;
+    width: 100%;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.social-icon-lg {
     max-height: 35px;
     max-width: 35px;
     width: 100%;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.container-body {
+    max-width: 720px;
+}
+
+.font-profile-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #DDDFDC;
+}
+
+.font-profile-desc {
+    color: #DDDFDC;
+}
+
+.padding-row {
+    padding-top: 20px;
+}
+
+.padding-row-profile {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+p.indent {
+    text-indent: 2em;
+}
+
+
+.bg-full {
+  position: relative;
+}
+
+.bg-full:before {
+  content: '';
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translateX( -50%);
+  height: 100%;
+  width: 99vw;
+  background: #000;
+
+}
+
+html {
+  overflow-x: hidden;
+}
+
+.bg-red {
+    background-color: red;
+}
+
+.padding-card {
+    margin: 10px;
+}
+
+.img-project-thumb { 
+    max-width: 200px;
+    max-height: 200px;
+    min-width: 50px;
+    min-height: 50px;
 }
