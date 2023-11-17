@@ -42,7 +42,8 @@
 /*  height: auto;*/
 /*max-height: 200px;
 max-width: 200px;*/
-max-width: 100%;
+width: 100%;
+max-width: 150px;
 max-height: auto;
 }
 
@@ -134,7 +135,7 @@ p {
 .font-profile-name {
     font-size: 1.3rem;
     font-weight: bold;
-    color: #DDDFDC;
+    color: #FFF;
 }
 
 .font-profile-desc {
@@ -189,4 +190,9 @@ html {
     max-height: 200px;
     min-width: 50px;
     min-height: 50px;
+    padding: 0.5em;
+}
+
+.disabled-link {
+  pointer-events: none;
 }
