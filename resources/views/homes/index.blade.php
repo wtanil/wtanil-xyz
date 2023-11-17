@@ -30,7 +30,7 @@
                         I'm William from Indonesia. After a solid career break, I'm thrilled to dive back into the coding and software development scene.
                     </p>
                     <p class="card-text indent">
-                        My focus is on iOS development, from making things look good on the iPhone screen to figuring out how everything fits together.Beyond iOS, I've explored Android, Unity, and websites, and played around with creative tools like Blender and GIMP. This portfolio is my showcase of the diverse skills I've picked up.
+                        My focus is on iOS development. This could be anything from making things look good on the iPhone screen to figuring out how everything fits together behind the scenes. Beyond iOS, I've explored Android, Unity, and websites, and played around with creative tools like Blender, GIMP, and SketchUp. This portfolio is my showcase of the diverse skills I've picked up.
                     </p>
                     <p class="card-text indent">
                         From crafting lines of code to sipping on endless cups of coffee, let's roll up our sleeves and dive into this fresh chapter together. Exciting times ahead!
@@ -47,7 +47,7 @@
 
                     <a href="https://github.com/wtanil" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/github-mark-white.svg" class="social-icon"></a>
 
-                    <a href="https://youtube.com" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/youtube-white.svg" class="social-icon-lg"></a>
+                    <a href="https://youtube.com" class="disabled-link" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/youtube-white.svg" class="social-icon-lg"></a>
 
                 </div>
             </dic>
@@ -88,7 +88,7 @@
 
             <a href="https://github.com/wtanil" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/github-mark-white.svg" class="social-icon"></a>
 
-            <a href="https://youtube.com" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/youtube-white.svg" class="social-icon-lg"></a>
+            <a href="https://youtube.com" class="disabled-link" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/youtube-white.svg" class="social-icon-lg"></a>
             <hr style="background-color: #DDDFDC;">
         </div>
         <div class="col-12 text-center">
