@@ -2,9 +2,9 @@
 
 @section('content')
 
-<div class="container">
+<div class="container container-body">
 
-    <div class="row">
+    <div class="row padding-row">
         <div class="col">
             {!! html_entity_decode($project->privacy_policy) !!}
         </div>
