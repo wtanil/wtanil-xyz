@@ -56,7 +56,7 @@ max-height: auto;
 }
 
 .link-badge {
-    max-height: 40px;
+    max-height: 50px;
     width: 75px;
 }
 
@@ -73,11 +73,19 @@ h4,
 h5,
 h6 {
 /*  color: #DDDFDC;*/
-color: #FFF;
+    color: #FFF;
 }
 
 p {
-  color: #DDDFDC;
+    color: #DDDFDC;
+}
+
+li {
+    color: #DDDFDC;
+}
+
+.text-color {
+    color: #DDDFDC;
 }
 
 .card {
@@ -193,6 +201,15 @@ html {
     padding: 0.5em;
 }
 
+.img-project-show-thumb { 
+    max-width: 150px;
+    max-height: 200px;
+    min-width: 50px;
+    min-height: 50px;
+    padding: 0.5em;
+}
+
 .disabled-link {
   pointer-events: none;
 }
+
