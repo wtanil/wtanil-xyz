@@ -41,11 +41,11 @@
     <div class="row">
 
         @foreach ($project->images->sortBy('priority') as $image)
-
-        <div class="col-6 col-sm-3 text-center">
+        @if ($image->priority != 0)
+        <div class="col-4 col-sm-2 text-center">
             <a href="{{ $image->high_res_url }}" target="_blank"><img class="rounded img-project-show-thumb" src="{{ $image->low_res_url }}"></a>
         </div>
-
+        @endif
         @endforeach
     </div>
     @endif
