@@ -31,8 +31,6 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <!-- asdf -->
                 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
@@ -55,21 +53,25 @@
         @yield('content')
     </main>
 
+
+
     <row>
+        {{--<div class="col-12 text-center">
+                            <a href="https://twitter.com/wtanil_dev" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/twitter-logo.svg" class="social-icon"></a>
+                
+                            <a href="https://gitlab.com/wtanil" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/gitlab-logo-700.svg" class="social-icon-lg"></a>
+                
+                            <a href="https://github.com/wtanil" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/github-mark-white.svg" class="social-icon"></a>
+                
+                            <a href="https://youtube.com" class="disabled-link" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/youtube-white.svg" class="social-icon-lg"></a>
+                            <hr style="background-color: #DDDFDC;">
+                        </div>--}}
         <div class="col-12 text-center">
-            <a href="https://twitter.com/wtanil_dev" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/twitter-logo.svg" class="social-icon"></a>
-
-            <a href="https://gitlab.com/wtanil" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/gitlab-logo-700.svg" class="social-icon-lg"></a>
-
-            <a href="https://github.com/wtanil" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/github-mark-white.svg" class="social-icon"></a>
-
-            <a href="https://youtube.com" class="disabled-link" target="_blank"><img src="https://www.wtanil.xyz/storage/asset/youtube-white.svg" class="social-icon-lg"></a>
-            <hr style="background-color: #DDDFDC;">
-        </div>
-        <div class="col-12 text-center">
+            <hr style="background-color: #000;">
             <p>Copyright {{ date('Y') }} | Designed and built by William Tanil</p>
         </div>
     </row>
+
 </div>
 </body>
 </html>
