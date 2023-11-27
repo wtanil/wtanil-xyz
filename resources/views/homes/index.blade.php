@@ -35,6 +35,9 @@
                     <p class="indent text-color-white">
                         From crafting lines of code to sipping on endless cups of coffee, let's roll up our sleeves and dive into this fresh chapter together. Exciting times ahead!
                     </p>
+                    <p class="indent text-color-white">
+                        Also, let's meet during the iOS Dev Happy Hour event on <a href="https://www.iosdevhappyhour.com/" target="_blank">www.iosdevhappyhour.com</a>.
+                    </p>
 
                 </div>
             </dic>
