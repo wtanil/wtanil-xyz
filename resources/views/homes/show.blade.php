@@ -60,7 +60,7 @@
     @if ($project->privacy_policy != null)
     <div class ="row">
         <div class="col">
-            <a href="{{ route('home.showPrivacyPolicy', ['id' => $project->id]) }}"><span class="small">Privacy Policy</span></a>
+            <a href="{{ route('home.showPrivacyPolicy', ['slug' => $project->slug]) }}"><span class="small">Privacy Policy</span></a>
         </div>
     </div>
     @endif

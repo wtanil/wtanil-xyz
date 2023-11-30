@@ -17,6 +17,7 @@ $factory->define(App\Project::class, function (Faker $faker) {
     return [
         'name' => $faker->sentence,
         'description' => $faker->paragraph,
+        'slug' => $faker->word,
         'hidden' => true,
         'start_date' => now(),
         'last_update_date' => now()
