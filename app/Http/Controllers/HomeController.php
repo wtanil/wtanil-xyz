@@ -44,9 +44,24 @@ class HomeController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    // public function show($id)
+    // {
+    //     $project = $this->projectQueryService->forId($id);
+    //     if ($project == null) {
+    //         return redirect()->route('home');
+    //     }
+    //     return view('homes.show')->with('project', $project);
+    // }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Project  $project
+     * @return \Illuminate\Http\Response
+     */
+    public function show($slug)
     {
-        $project = $this->projectQueryService->forId($id);
+        $project = $this->projectQueryService->forSlug($slug);
         if ($project == null) {
             return redirect()->route('home');
         }
@@ -60,9 +75,24 @@ class HomeController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function showPrivacyPolicy($id)
+    // public function showPrivacyPolicy($id)
+    // {
+    //     $project = $this->projectQueryService->forId($id);
+    //     if ($project == null) {
+    //         return redirect()->route('home');
+    //     }
+    //     return view('homes.privacypolicy')->with('project', $project);
+    // }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Project  $project
+     * @return \Illuminate\Http\Response
+     */
+    public function showPrivacyPolicy($slug)
     {
-        $project = $this->projectQueryService->forId($id);
+        $project = $this->projectQueryService->forSlug($slug);
         if ($project == null) {
             return redirect()->route('home');
         }

@@ -79,7 +79,7 @@
             <p>{!! nl2br(e($project->blurb)) !!} </p>
             
             <div>
-                <span class="badge"><a class="btn btn-success btn-sm" href="{{ route('home.show', ['id' => $project->id]) }}" role="button">Learn more</a></span>
+                <span class="badge"><a class="btn btn-success btn-sm" href="{{ route('home.show', ['slug' => $project->slug]) }}" role="button">Learn more</a></span>
                 @if ($project->links != null)
                 {!! html_entity_decode($project->links) !!}
                 @endif

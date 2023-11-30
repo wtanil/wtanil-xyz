@@ -54,5 +54,17 @@ class ProjectQueryService {
         return Project::with(['tags', 'images'])->find($id);
     }
 
+    /**
+     *  Get project by slug
+     *
+     *  @param  String slug
+     *  @return Model 
+     */
+    public function forSlug($slug)
+    {
+
+        return Project::with(['tags', 'images'])->where('slug', $slug)->first();
+    }
+
 
 }
