@@ -31,6 +31,7 @@ class CreateProjectService {
         $project->hidden = $inputs['hidden'];
         $project->start_date = $inputs['start_date'];
         $project->last_update_date = $inputs['last_update_date'];
+        $project->slug = $inputs['slug'];
 
         return $project->save();
 

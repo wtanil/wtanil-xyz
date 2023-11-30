@@ -38,7 +38,8 @@ class CreateProjectServiceTest extends TestCase
             'description' => $factoryProject->description,
             'hidden' => $factoryProject->hidden,
             'start_date' => $factoryProject->start_date,
-            'last_update_date' => $factoryProject->last_update_date
+            'last_update_date' => $factoryProject->last_update_date,
+            'slug' => $factoryProject->slug
         ];
 
         // Act

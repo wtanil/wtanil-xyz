@@ -140,10 +140,10 @@ class HomeFeatureTest extends TestCase
         $factoryProject = factory(Project::class)->create(
             ['hidden' => false]
         );
-        $id = $factoryProject->id;
+        $slug = $factoryProject->slug;
 
         // Act
-        $response = $this->get(route('home.show', ['id' => $id]));
+        $response = $this->get(route('home.show', ['slug' => $slug]));
 
         // Assert
         $response->assertStatus(200);
