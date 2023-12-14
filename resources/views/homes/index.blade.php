@@ -27,10 +27,10 @@
                     <h1 class="text-center text-color-white">Hello there!</h1><!-- General Kenobi! -->
                     
                     <p class="indent text-color-white">
-                        I'm William from Indonesia. After a solid career break, I'm thrilled to dive back into the coding and software development scene.
+                        I'm William from Indonesia. My focus is on iOS development. This could be anything from making things look good on the iPhone screen to figuring out how everything fits together behind the scenes.
                     </p>
                     <p class="indent text-color-white">
-                        My focus is on iOS development. This could be anything from making things look good on the iPhone screen to figuring out how everything fits together behind the scenes. Beyond iOS, I've explored Android, Unity, and websites, and played around with creative tools like Blender, GIMP, and SketchUp. This portfolio is my showcase of the diverse skills I've picked up.
+                        Beyond iOS, I've explored Android, Unity, and websites, and played around with creative tools like Blender, GIMP, and SketchUp. This portfolio is my showcase of the diverse skills I've picked up.
                     </p>
                     <p class="indent text-color-white">
                         From crafting lines of code to sipping on endless cups of coffee, let's roll up our sleeves and dive into this fresh chapter together. Exciting times ahead!
